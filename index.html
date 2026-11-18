@@ -37,7 +37,6 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
@@ -49,7 +48,6 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
@@ -68,7 +66,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 a { color: var(--gold); text-decoration: none; }
 ::selection { background: rgba(212, 175, 106, 0.35); color: var(--ivory); }
 
-/* ─── LAYOUT UTILITIES ─────────────────────────────────── */
+/* ─── LAYOUT ───────────────────────────────────────────── */
 
 .container {
   width: 100%;
@@ -101,7 +99,16 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--ivory);
 }
 
-.section-title em { font-style: italic; color: var(--gold-light); }
+.section-title em {
+  font-style: italic;
+  color: var(--gold-light);
+  animation: goldGlow 4s ease-in-out infinite;
+}
+
+@keyframes goldGlow {
+  0%, 100% { text-shadow: 0 0 15px rgba(212, 175, 106, 0.15); }
+  50% { text-shadow: 0 0 28px rgba(212, 175, 106, 0.45); }
+}
 
 .section-subtitle {
   font-size: clamp(0.88rem, 2.3vw, 1rem);
@@ -109,6 +116,15 @@ a { color: var(--gold); text-decoration: none; }
   max-width: 540px;
   margin: 1rem auto 0;
 }
+
+/* ─── SCROLL REVEAL ────────────────────────────────────── */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+[data-reveal].revealed { opacity: 1; transform: translateY(0); }
 
 /* ─── BUTTONS ─────────────────────────────────────────── */
 
@@ -145,22 +161,6 @@ a { color: var(--gold); text-decoration: none; }
 
 .btn:hover::before, .btn:focus-visible::before { transform: scaleY(1); }
 .btn:hover, .btn:focus-visible { color: var(--bg); letter-spacing: 0.34em; outline: none; }
-
-.btn-ghost {
-  border-color: var(--border);
-  color: var(--ivory-dim);
-  letter-spacing: 0.22em;
-  padding: 0.8rem 1.6rem;
-  font-size: 0.7rem;
-}
-
-.btn-ghost:hover, .btn-ghost:focus-visible {
-  border-color: var(--gold);
-  color: var(--gold);
-  letter-spacing: 0.26em;
-}
-
-.btn-ghost::before { display: none; }
 
 /* ─── CANVAS LAYERS ───────────────────────────────────── */
 
@@ -226,7 +226,7 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   INTRO SCREEN
+   INTRO
    ═══════════════════════════════════════════════════════════════ */
 
 #intro {
@@ -539,6 +539,101 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   FROM THIS → TO THIS
+   ═══════════════════════════════════════════════════════════════ */
+
+.then-now {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(0.75rem, 2.5vw, 2rem);
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .then-now {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 400px;
+  }
+}
+
+.then-now-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.then-now-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+  box-shadow:
+    0 20px 50px -15px rgba(0, 0, 0, 0.7),
+    0 0 40px -10px rgba(212, 175, 106, 0.2);
+  position: relative;
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+  background: #0a0806;
+}
+
+.then-now-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(8, 8, 8, 0.35));
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease);
+}
+
+.then-now-frame:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 25px 60px -15px rgba(0, 0, 0, 0.8),
+    0 0 60px -10px rgba(212, 175, 106, 0.4);
+}
+
+.then-now-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.then-now-label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.then-now-caption {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ivory-muted);
+  text-align: center;
+}
+
+.then-now-arrow {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  color: var(--gold);
+  animation: arrowPulse 2s ease-in-out infinite;
+  line-height: 1;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .then-now-arrow { transform: rotate(90deg); }
+}
+
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.55; filter: drop-shadow(0 0 0 rgba(212, 175, 106, 0)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 12px rgba(212, 175, 106, 0.6)); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    GALLERY
    ═══════════════════════════════════════════════════════════════ */
 
@@ -581,9 +676,16 @@ a { color: var(--gold); text-decoration: none; }
   padding: 0;
   text-align: left;
   transition: transform 0.5s var(--ease);
+  opacity: 0;
+  animation: fadeUpItem 0.7s var(--ease) forwards;
 }
 
 .gallery-item:hover { transform: translateY(-4px); }
+
+@keyframes fadeUpItem {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .polaroid {
   padding: 0.6rem 0.6rem 2.4rem;
@@ -726,7 +828,7 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   LETTER
+   LETTER  (🔧 FIXED)
    ═══════════════════════════════════════════════════════════════ */
 
 .letter-stage {
@@ -737,20 +839,24 @@ a { color: var(--gold); text-decoration: none; }
   align-items: center;
   justify-content: center;
   position: relative;
+  perspective: 1400px;
+  cursor: pointer;
+  padding: 2rem 0;
 }
+
+.letter-stage.opened { cursor: default; }
 
 .envelope-wrap {
   width: min(100%, 340px);
   aspect-ratio: 5 / 3.4;
   position: relative;
-  cursor: pointer;
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-  perspective: 1400px;
+  transform-style: preserve-3d;
 }
 
 .letter-stage.opened .envelope-wrap {
   opacity: 0;
-  transform: scale(0.85);
+  transform: scale(0.85) translateY(-20px);
   pointer-events: none;
 }
 
@@ -784,7 +890,7 @@ a { color: var(--gold); text-decoration: none; }
   box-shadow: 0 1px 0 rgba(154, 123, 63, 0.2);
 }
 
-.envelope-wrap:hover .envelope-flap { transform: rotateX(22deg); }
+.letter-stage:hover .envelope-flap { transform: rotateX(22deg); }
 
 .wax-seal {
   position: absolute;
@@ -807,7 +913,7 @@ a { color: var(--gold); text-decoration: none; }
   transition: transform 0.4s var(--ease);
 }
 
-.envelope-wrap:hover .wax-seal { transform: translate(-50%, -50%) scale(1.05); }
+.letter-stage:hover .wax-seal { transform: translate(-50%, -50%) scale(1.06); }
 
 .letter-paper {
   position: absolute;
@@ -823,19 +929,23 @@ a { color: var(--gold); text-decoration: none; }
   opacity: 0;
   transform: translateY(30px) rotateX(-15deg);
   transform-origin: top center;
-  transition: opacity 0.9s var(--ease) 0.3s, transform 0.9s var(--ease) 0.3s;
+  transition: opacity 0.9s var(--ease) 0.2s, transform 0.9s var(--ease) 0.2s;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   height: auto;
-  min-height: 100%;
   max-height: 80vh;
+  /* 🔧 FIX: prevent invisible letter from stealing clicks */
+  pointer-events: none;
+  z-index: 2;
 }
 
 .letter-stage.opened .letter-paper {
   opacity: 1;
   transform: translateY(0) rotateX(0);
+  pointer-events: auto;
+  position: relative;
 }
 
 .letter-paper h3 {
@@ -848,11 +958,17 @@ a { color: var(--gold); text-decoration: none; }
 }
 
 .letter-paper p { font-size: 0.95em; line-height: 1.75; }
-.letter-paper .signature { margin-top: 0.75rem; font-style: italic; color: #8a6b2e; text-align: right; font-weight: 500; }
+.letter-paper .signature {
+  margin-top: 0.75rem;
+  font-style: italic;
+  color: #8a6b2e;
+  text-align: right;
+  font-weight: 500;
+}
 
 .letter-hint {
   position: absolute;
-  bottom: -2rem;
+  bottom: 0.5rem;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.68rem;
@@ -861,6 +977,13 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--ivory-muted);
   white-space: nowrap;
   transition: opacity 0.4s var(--ease);
+  animation: hintPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 .letter-stage.opened .letter-hint { opacity: 0; }
@@ -889,7 +1012,7 @@ a { color: var(--gold); text-decoration: none; }
   -webkit-backdrop-filter: blur(12px);
   text-align: left;
   overflow: hidden;
-  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
   cursor: pointer;
   min-height: 140px;
   display: flex;
@@ -897,7 +1020,11 @@ a { color: var(--gold); text-decoration: none; }
   justify-content: space-between;
 }
 
-.fact-card:hover { border-color: rgba(212, 175, 106, 0.5); transform: translateY(-3px); }
+.fact-card:hover {
+  border-color: rgba(212, 175, 106, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px -15px rgba(212, 175, 106, 0.3);
+}
 
 .fact-card::before {
   content: '';
@@ -943,7 +1070,7 @@ a { color: var(--gold); text-decoration: none; }
 .fact-card.revealed .fact-hint { opacity: 0; }
 
 /* ═══════════════════════════════════════════════════════════════
-   CAKE
+   CAKE  (🔧 FIXED — bigger tap targets, smoke puff)
    ═══════════════════════════════════════════════════════════════ */
 
 .cake-stage {
@@ -958,7 +1085,7 @@ a { color: var(--gold); text-decoration: none; }
 .cake {
   position: relative;
   width: 300px;
-  height: 210px;
+  height: 240px;
   max-width: 88vw;
   margin: 2rem auto 0;
 }
@@ -969,49 +1096,97 @@ a { color: var(--gold); text-decoration: none; }
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 6px;
   z-index: 3;
   align-items: flex-end;
+  justify-content: center;
 }
 
+/* 🔧 FIXED: full candle + flame is a single large tap target */
 .candle {
+  position: relative;
+  width: 30px;
+  height: 68px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.candle-body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 8px;
   height: 44px;
   background: linear-gradient(to right, #d4af6a, #ead9a8, #d4af6a);
   border-radius: 2px;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s var(--ease);
+  transition: background 0.5s var(--ease);
+  box-shadow: inset -1px 0 2px rgba(0,0,0,0.2);
 }
 
-.candle:active { transform: scale(0.95); }
+.candle.blown .candle-body {
+  background: linear-gradient(to right, #4a3d22, #6d5a2e, #4a3d22);
+  box-shadow: inset -1px 0 2px rgba(0,0,0,0.5);
+}
 
 .flame {
   position: absolute;
-  top: -20px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 11px;
-  height: 20px;
+  width: 12px;
+  height: 22px;
   background: radial-gradient(ellipse at 50% 80%, #fff 0%, #ffd700 30%, #ff8c00 60%, transparent 90%);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   animation: flicker 0.4s infinite alternate;
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-  filter: drop-shadow(0 0 8px rgba(255, 180, 60, 0.8));
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  filter: drop-shadow(0 0 10px rgba(255, 180, 60, 0.9));
   pointer-events: none;
+  transform-origin: center bottom;
 }
 
-.candle.blown .flame { opacity: 0; transform: translateX(-50%) scale(0.2); }
-.candle.blown { background: linear-gradient(to right, #6d5a2e, #9a7b3f, #6d5a2e); }
+.candle.blown .flame {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.1);
+  animation: none;
+}
 
 @keyframes flicker {
   0% { transform: translateX(-50%) scale(1) rotate(-3deg); opacity: 1; }
-  100% { transform: translateX(-50%) scale(1.1) rotate(3deg); opacity: 0.85; }
+  100% { transform: translateX(-50%) scale(1.12) rotate(3deg); opacity: 0.8; }
+}
+
+/* 🔧 NEW: smoke puff on blow-out */
+.smoke {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(220, 220, 220, 0.55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.candle.blown .smoke {
+  animation: smokePuff 1.4s ease-out forwards;
+}
+
+@keyframes smokePuff {
+  0% { opacity: 0.8; transform: translate(-50%, 0) scale(0.5); }
+  50% { opacity: 0.4; transform: translate(-50%, -30px) scale(1.5); }
+  100% { opacity: 0; transform: translate(-50%, -55px) scale(2); }
 }
 
 .cake-tier-top {
   position: absolute;
-  top: 44px;
+  top: 64px;
   left: 50%;
   transform: translateX(-50%);
   width: 180px;
@@ -1033,7 +1208,7 @@ a { color: var(--gold); text-decoration: none; }
 
 .cake-tier-bottom {
   position: absolute;
-  top: 104px;
+  top: 124px;
   left: 50%;
   transform: translateX(-50%);
   width: 240px;
@@ -1055,7 +1230,7 @@ a { color: var(--gold); text-decoration: none; }
 
 .cake-plate {
   position: absolute;
-  top: 184px;
+  top: 204px;
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
@@ -1094,6 +1269,7 @@ a { color: var(--gold); text-decoration: none; }
   color: var(--gold);
   margin-bottom: 0.5rem;
   font-weight: 500;
+  animation: goldGlow 3s ease-in-out infinite;
 }
 
 .wish-text {
@@ -1140,8 +1316,6 @@ footer {
   }
 }
 
-/* ─── SCROLLBAR ───────────────────────────────────────── */
-
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
@@ -1151,9 +1325,6 @@ footer {
 
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     GLOBAL LAYERS
-     ═══════════════════════════════════════════════════════════════ -->
 <canvas id="particles" aria-hidden="true"></canvas>
 <div id="scrollProgress" aria-hidden="true"></div>
 <button id="musicToggle" aria-label="Toggle background music" title="Toggle music">
@@ -1163,7 +1334,7 @@ footer {
 </button>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     INTRO SCREEN
+     INTRO
      ═══════════════════════════════════════════════════════════════ -->
 <div id="intro">
   <div class="intro-inner">
@@ -1177,9 +1348,6 @@ footer {
   <button class="intro-skip" id="skipBtn">Skip Intro</button>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     MAIN CONTENT
-     ═══════════════════════════════════════════════════════════════ -->
 <main id="main" hidden>
 
   <!-- ─── HERO ────────────────────────────────────────────── -->
@@ -1198,7 +1366,7 @@ footer {
   <!-- ─── TIMELINE ────────────────────────────────────────── -->
   <section class="section" id="timeline">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="section-kicker">Chapter by Chapter</p>
         <h2 class="section-title">Where Our <em>Story</em> Began</h2>
       </div>
@@ -1208,10 +1376,22 @@ footer {
     </div>
   </section>
 
+  <!-- ─── FROM THIS TO THIS ───────────────────────────────── -->
+  <section class="section" id="thenNow">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <p class="section-kicker">Then &amp; Now</p>
+        <h2 class="section-title">From This&hellip; <em>To This</em></h2>
+        <p class="section-subtitle" id="thenNowSubtitle">Time flies. The bond stays.</p>
+      </div>
+      <div class="then-now" id="thenNowWrap"></div>
+    </div>
+  </section>
+
   <!-- ─── GALLERY ─────────────────────────────────────────── -->
   <section class="section" id="gallery">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="section-kicker">The Memory Vault</p>
         <h2 class="section-title">Moments Worth <em>Keeping</em></h2>
         <p class="section-subtitle">A few snapshots from the friendship archive.</p>
@@ -1224,13 +1404,13 @@ footer {
   <!-- ─── LETTER ──────────────────────────────────────────── -->
   <section class="section" id="letter">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="section-kicker">From Me to You</p>
         <h2 class="section-title">A Little <em>Something</em> For You</h2>
         <p class="section-subtitle">Tap the envelope to open</p>
       </div>
-      <div class="letter-stage" id="letterStage">
-        <div class="envelope-wrap" id="envelopeWrap" role="button" tabindex="0" aria-label="Open the letter">
+      <div class="letter-stage" id="letterStage" role="button" tabindex="0" aria-label="Open the letter">
+        <div class="envelope-wrap">
           <div class="envelope-body"></div>
           <div class="envelope-flap"></div>
           <div class="wax-seal">S</div>
@@ -1244,7 +1424,7 @@ footer {
   <!-- ─── FUN FACTS ───────────────────────────────────────── -->
   <section class="section" id="funFacts">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="section-kicker">Certified Facts</p>
         <h2 class="section-title">Things That Make You, <em>YOU!</em></h2>
         <p class="section-subtitle">Tap a card to reveal.</p>
@@ -1256,7 +1436,7 @@ footer {
   <!-- ─── CAKE ────────────────────────────────────────────── -->
   <section class="section" id="cakeSection">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="section-kicker">The Final Surprise</p>
         <h2 class="section-title">Make a <em>Wish</em></h2>
         <p class="section-subtitle">Tap each candle to blow it out.</p>
@@ -1278,7 +1458,6 @@ footer {
     </div>
   </section>
 
-  <!-- ─── FOOTER ──────────────────────────────────────────── -->
   <footer>
     <p class="footer-note" id="footerNote"></p>
     <p class="footer-copy" id="footerCopy"></p>
@@ -1307,28 +1486,24 @@ footer {
      ═══════════════════════════════════════════════════════════════ -->
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   ⭐  EDIT EVERYTHING YOU NEED FROM THIS ONE CONFIG OBJECT  ⭐
+   ⭐  EDIT EVERYTHING FROM THIS ONE CONFIG OBJECT  ⭐
    ═══════════════════════════════════════════════════════════════ */
 
 const CONFIG = {
-  // ─── FRIEND ──────────────────────────────────────────────
   friendName: 'Srishti',
 
-  // ─── BIRTHDAY: month is 1-based (11 = November) ──────────
+  // month is 1-based (11 = November)
   birthdayMonth: 11,
   birthdayDay: 25,
 
-  // ─── HERO PHOTO ──────────────────────────────────────────
-  // Put `srishti-photos.jpg` in the same folder as index.html.
+  // Hero photo — put `srishti-photos.jpg` next to index.html
   heroImage: 'srishti-photos.jpg',
 
-  // ─── INTRO ───────────────────────────────────────────────
   intro: {
     line1: 'Some people make ordinary days unforgettable...',
     line2: 'And today is all about one of them.',
   },
 
-  // ─── HERO TEXT ───────────────────────────────────────────
   hero: {
     kicker: 'Happy Birthday',
     tagline: 'Today, the spotlight belongs to you.',
@@ -1339,18 +1514,17 @@ const CONFIG = {
     afterSub: 'See you next year — same time, same friendship.',
   },
 
-  // ─── TIMELINE ────────────────────────────────────────────
-  // Add `personal: 'your memory here'` to any chapter to show it.
+  // ─── TIMELINE (no school references) ────────────────────
   timeline: [
     {
       chapter: '01',
-      title: 'Class 10',
+      title: 'Where It All Began',
       quote: 'Every great friendship has a beginning.',
-      personal: '', // e.g. 'The first conversation I actually remember...'
+      personal: '',
     },
     {
       chapter: '02',
-      title: 'The School Days',
+      title: 'The Early Days',
       quote: 'Random conversations, unexpected laughs and countless memories.',
       personal: '',
     },
@@ -1368,55 +1542,68 @@ const CONFIG = {
     },
   ],
 
-  // ─── GALLERY ─────────────────────────────────────────────
-  // To add photos: put them in a `photos/` folder next to index.html
-  // and reference them here like 'photos/my-pic.jpg'.
-  // Leave `src: ''` to show an elegant placeholder.
+  // ─── FROM THIS → TO THIS ────────────────────────────────
+  // Put your group photos in the same folder (or a `photos/` folder)
+  // and reference them below. Leave '' for an elegant placeholder.
+  thenNow: {
+    subtitle: 'Time flies. The bond stays.',
+    then: {
+      label: 'From This',
+      caption: 'Where we started',
+      src: '',              // e.g. 'photos/group-old.jpg'
+      placeholder: 'Old Group Photo',
+    },
+    now: {
+      label: 'To This',
+      caption: 'And still going strong',
+      src: '',              // e.g. 'photos/group-now.jpg'
+      placeholder: 'Recent Group Photo',
+    },
+  },
+
+  // ─── GALLERY (categories renamed) ──────────────────────
   gallery: {
     filters: [
       { id: 'all', label: 'All' },
-      { id: 'school', label: 'School Memories' },
+      { id: 'early', label: 'Early Memories' },
       { id: 'random', label: 'Random Moments' },
       { id: 'best', label: 'Best Memories' },
-      { id: 'days', label: 'Unforgettable Days' },
+      { id: 'group', label: 'Group Photos' },
     ],
     photos: [
-      { id: 1, src: '', caption: 'Add a caption', category: 'school', label: 'School Memory 1', aspect: 'portrait' },
-      { id: 2, src: '', caption: 'Add a caption', category: 'random', label: 'Random Moment 1', aspect: 'square' },
-      { id: 3, src: '', caption: 'Add a caption', category: 'best', label: 'Best Memory 1', aspect: 'portrait' },
-      { id: 4, src: '', caption: 'Add a caption', category: 'days', label: 'Unforgettable Day 1', aspect: 'landscape' },
-      { id: 5, src: '', caption: 'Add a caption', category: 'school', label: 'School Memory 2', aspect: 'square' },
-      { id: 6, src: '', caption: 'Add a caption', category: 'best', label: 'Best Memory 2', aspect: 'portrait' },
-      { id: 7, src: '', caption: 'Add a caption', category: 'random', label: 'Random Moment 2', aspect: 'landscape' },
-      { id: 8, src: '', caption: 'Add a caption', category: 'days', label: 'Unforgettable Day 2', aspect: 'portrait' },
+      { id: 1, src: '', caption: 'Add a caption', category: 'early',  label: 'Early Memory 1',   aspect: 'portrait' },
+      { id: 2, src: '', caption: 'Add a caption', category: 'random', label: 'Random Moment 1',  aspect: 'square' },
+      { id: 3, src: '', caption: 'Add a caption', category: 'best',   label: 'Best Memory 1',    aspect: 'portrait' },
+      { id: 4, src: '', caption: 'Add a caption', category: 'group',  label: 'Group Photo 1',    aspect: 'landscape' },
+      { id: 5, src: '', caption: 'Add a caption', category: 'early',  label: 'Early Memory 2',   aspect: 'square' },
+      { id: 6, src: '', caption: 'Add a caption', category: 'best',   label: 'Best Memory 2',    aspect: 'portrait' },
+      { id: 7, src: '', caption: 'Add a caption', category: 'random', label: 'Random Moment 2',  aspect: 'landscape' },
+      { id: 8, src: '', caption: 'Add a caption', category: 'group',  label: 'Group Photo 2',    aspect: 'portrait' },
     ],
   },
 
-  // ─── LETTER ──────────────────────────────────────────────
+  // ─── LETTER (no school references) ──────────────────────
   letter: {
     greeting: 'Dear Srishti,',
     paragraphs: [
-      "It's honestly amazing how a friendship that started back in Class 10 has become such a special part of life.",
-      'From school days to all the random conversations, funny moments and countless memories, there are so many little things worth remembering.',
+      "It's honestly amazing how our friendship has grown to become such a special part of life.",
+      'From the early days to all the random conversations, funny moments and countless memories, there are so many little things worth remembering.',
       'I hope this new year of your life brings you happiness, confidence, new opportunities and countless reasons to smile.',
       'Never stop being yourself, keep achieving amazing things and keep making life a little more interesting with your presence.',
       'Thank you for being such an important friend.',
       'Once again, Happy Birthday, Srishti!',
     ],
     signature: '— Your Best Friend',
-    sealLetter: 'S',
   },
 
-  // ─── FUN FACTS ───────────────────────────────────────────
   funFacts: [
-    { title: 'Professional Overthinker', description: 'Probably replaying a 2019 conversation at 2 AM. (Edit this in CONFIG.funFacts.)' },
+    { title: 'Professional Overthinker', description: 'Probably replaying an old conversation at 2 AM. (Edit this in CONFIG.funFacts.)' },
     { title: 'Queen of Random Conversations', description: 'Can turn any chat into a 3-hour session. (Edit me.)' },
     { title: 'Unlimited Laughing Mode', description: 'The laugh that makes everyone else laugh. (Edit me.)' },
     { title: 'Certified Memory Maker', description: 'Turns ordinary days into stories worth telling. (Edit me.)' },
     { title: 'Main Character Energy', description: 'Walks into a room and suddenly it is her story. (Edit me.)' },
   ],
 
-  // ─── CAKE ────────────────────────────────────────────────
   cake: {
     candleCount: 5,
     instructions: 'Tap each candle to blow it out',
@@ -1425,14 +1612,12 @@ const CONFIG = {
     replayLabel: 'Replay the Magic',
   },
 
-  // ─── MUSIC ───────────────────────────────────────────────
   // Add `birthday-music.mp3` next to index.html.
-  // Leave empty string to hide the toggle entirely.
+  // Leave '' to hide the toggle entirely.
   music: {
     src: '', // 'birthday-music.mp3'
   },
 
-  // ─── FOOTER ──────────────────────────────────────────────
   footer: {
     note: 'Made with care, for a very special friend.',
     copyright: 'The Srishti Experience',
@@ -1446,22 +1631,25 @@ const CONFIG = {
 const $ = (sel) => document.querySelector(sel);
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function placeholderHTML(label, hint = 'Add a photo') {
+  return `<div class="placeholder-img">
+    <span class="ph-label">${label}</span>
+    <span class="ph-hint">${hint}</span>
+  </div>`;
+}
+
 /* ═══════════════════════════════════════════════════════════════
-   PARTICLE BACKGROUND
+   PARTICLES
    ═══════════════════════════════════════════════════════════════ */
 
 (function initParticles() {
   if (prefersReducedMotion) return;
-
   const canvas = $('#particles');
   const ctx = canvas.getContext('2d');
   let particles = [];
   let animationId = null;
 
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 
   function create() {
     const count = window.innerWidth < 640 ? 24 : 55;
@@ -1478,49 +1666,41 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   function frame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (const p of particles) {
-      p.x += p.vx;
-      p.y += p.vy;
+      p.x += p.vx; p.y += p.vy;
       if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
       if (p.x < -10) p.x = canvas.width + 10;
       if (p.x > canvas.width + 10) p.x = -10;
       ctx.fillStyle = `rgba(212, 175, 106, ${p.opacity})`;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
     }
     animationId = requestAnimationFrame(frame);
   }
 
-  resize();
-  create();
-  frame();
-
+  resize(); create(); frame();
   window.addEventListener('resize', () => { resize(); create(); });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      if (animationId) cancelAnimationFrame(animationId);
-    } else {
-      animationId = requestAnimationFrame(frame);
-    }
+    if (document.hidden) { if (animationId) cancelAnimationFrame(animationId); }
+    else { animationId = requestAnimationFrame(frame); }
   });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   SCROLL PROGRESS BAR
+   SCROLL PROGRESS
    ═══════════════════════════════════════════════════════════════ */
 
 (function initScrollProgress() {
   const bar = $('#scrollProgress');
   window.addEventListener('scroll', () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
-    bar.style.width = pct + '%';
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
   }, { passive: true });
 })();
 
 /* ═══════════════════════════════════════════════════════════════
    INTRO
    ═══════════════════════════════════════════════════════════════ */
+
+let setupReveals = null;
 
 (function initIntro() {
   $('#introLine1').textContent = CONFIG.intro.line1;
@@ -1538,8 +1718,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       intro.style.display = 'none';
       main.hidden = false;
       window.scrollTo(0, 0);
-      // Kick off reveal observers
-      initReveals();
+      if (setupReveals) setupReveals();
     }, 800);
   }
 
@@ -1554,24 +1733,15 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 (function initHero() {
   const img = $('#heroImg');
   const portrait = $('#heroPortrait');
-
   img.alt = CONFIG.friendName;
 
   if (CONFIG.heroImage) {
     img.src = CONFIG.heroImage;
     img.onerror = () => {
-      portrait.innerHTML = `
-        <div class="placeholder-img">
-          <span class="ph-label">Add your photo</span>
-          <span class="ph-hint">Save as "${CONFIG.heroImage}"<br/>next to index.html</span>
-        </div>`;
+      portrait.innerHTML = placeholderHTML('Add your photo', `Save as "${CONFIG.heroImage}" next to index.html`);
     };
   } else {
-    portrait.innerHTML = `
-      <div class="placeholder-img">
-        <span class="ph-label">Add your photo</span>
-        <span class="ph-hint">Set CONFIG.heroImage</span>
-      </div>`;
+    portrait.innerHTML = placeholderHTML('Add your photo', 'Set CONFIG.heroImage');
   }
 
   $('#heroKicker').textContent = CONFIG.hero.kicker;
@@ -1585,55 +1755,41 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const bday = new Date(now.getFullYear(), CONFIG.birthdayMonth - 1, CONFIG.birthdayDay);
-
-    if (today.getTime() === bday.getTime()) {
-      return { state: 'today' };
-    }
-    if (today < bday) {
-      return { state: 'countdown', diff: bday - now };
-    }
+    if (today.getTime() === bday.getTime()) return { state: 'today' };
+    if (today < bday) return { state: 'countdown', diff: bday - now };
     return { state: 'past' };
   }
 
   function render() {
     const info = getBirthdayInfo();
-
     if (info.state === 'today') {
-      container.innerHTML = `
-        <div class="hero-celebration">
-          <p class="hero-celebration-title">${CONFIG.hero.birthdayLabel}</p>
-          <p class="hero-celebration-sub">${CONFIG.hero.birthdaySub}</p>
-        </div>`;
+      container.innerHTML = `<div class="hero-celebration">
+        <p class="hero-celebration-title">${CONFIG.hero.birthdayLabel}</p>
+        <p class="hero-celebration-sub">${CONFIG.hero.birthdaySub}</p>
+      </div>`;
       if (intervalId) { clearInterval(intervalId); intervalId = null; }
       return;
     }
-
     if (info.state === 'past') {
-      container.innerHTML = `
-        <div class="hero-celebration">
-          <p class="hero-celebration-title">${CONFIG.hero.afterLabel}</p>
-          <p class="hero-celebration-sub">${CONFIG.hero.afterSub}</p>
-        </div>`;
+      container.innerHTML = `<div class="hero-celebration">
+        <p class="hero-celebration-title">${CONFIG.hero.afterLabel}</p>
+        <p class="hero-celebration-sub">${CONFIG.hero.afterSub}</p>
+      </div>`;
       if (intervalId) { clearInterval(intervalId); intervalId = null; }
       return;
     }
-
-    // countdown
     const d = info.diff;
+    const pad = (n) => String(n).padStart(2, '0');
     const days = Math.floor(d / 86400000);
     const hours = Math.floor((d % 86400000) / 3600000);
     const minutes = Math.floor((d % 3600000) / 60000);
     const seconds = Math.floor((d % 60000) / 1000);
-
-    const pad = (n) => String(n).padStart(2, '0');
-
-    container.innerHTML = `
-      <div class="countdown" aria-label="${CONFIG.hero.countdownLabel}">
-        <div class="countdown-unit"><span class="countdown-num">${pad(days)}</span><span class="countdown-label">Days</span></div>
-        <div class="countdown-unit"><span class="countdown-num">${pad(hours)}</span><span class="countdown-label">Hours</span></div>
-        <div class="countdown-unit"><span class="countdown-num">${pad(minutes)}</span><span class="countdown-label">Minutes</span></div>
-        <div class="countdown-unit"><span class="countdown-num">${pad(seconds)}</span><span class="countdown-label">Seconds</span></div>
-      </div>`;
+    container.innerHTML = `<div class="countdown" aria-label="${CONFIG.hero.countdownLabel}">
+      <div class="countdown-unit"><span class="countdown-num">${pad(days)}</span><span class="countdown-label">Days</span></div>
+      <div class="countdown-unit"><span class="countdown-num">${pad(hours)}</span><span class="countdown-label">Hours</span></div>
+      <div class="countdown-unit"><span class="countdown-num">${pad(minutes)}</span><span class="countdown-label">Minutes</span></div>
+      <div class="countdown-unit"><span class="countdown-num">${pad(seconds)}</span><span class="countdown-label">Seconds</span></div>
+    </div>`;
   }
 
   render();
@@ -1660,10 +1816,41 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 })();
 
 /* ═══════════════════════════════════════════════════════════════
+   FROM THIS → TO THIS
+   ═══════════════════════════════════════════════════════════════ */
+
+(function initThenNow() {
+  const wrap = $('#thenNowWrap');
+  const data = CONFIG.thenNow;
+
+  $('#thenNowSubtitle').textContent = data.subtitle;
+
+  function frameHTML(item) {
+    const inner = item.src
+      ? `<img src="${item.src}" alt="${item.placeholder || 'Group photo'}" loading="lazy" />`
+      : `<div class="placeholder-img">
+          <span class="ph-label">${item.placeholder || 'Group photo'}</span>
+          <span class="ph-hint">Add src in CONFIG.thenNow</span>
+        </div>`;
+    return `<div class="then-now-item" data-reveal>
+      <div class="then-now-frame">${inner}</div>
+      <p class="then-now-label">${item.label}</p>
+      <p class="then-now-caption">${item.caption}</p>
+    </div>`;
+  }
+
+  wrap.innerHTML = `
+    ${frameHTML(data.then)}
+    <div class="then-now-arrow" aria-hidden="true">→</div>
+    ${frameHTML(data.now)}
+  `;
+})();
+
+/* ═══════════════════════════════════════════════════════════════
    GALLERY + LIGHTBOX
    ═══════════════════════════════════════════════════════════════ */
 
-let galleryState = { filter: 'all', current: 0, items: [] };
+const galleryState = { filter: 'all', current: 0, items: [] };
 
 (function initGallery() {
   const filtersEl = $('#galleryFilters');
@@ -1683,13 +1870,6 @@ let galleryState = { filter: 'all', current: 0, items: [] };
     filtersEl.appendChild(btn);
   });
 
-  function makePlaceholder(photo, extraClass = '') {
-    return `<div class="placeholder-img ${extraClass}">
-      <span class="ph-label">${photo.label || 'Photo'}</span>
-      <span class="ph-hint">Add at "${photo.suggestedPath || 'photos/'}"</span>
-    </div>`;
-  }
-
   function renderGallery() {
     const filtered = CONFIG.gallery.photos.filter(
       (p) => galleryState.filter === 'all' || p.category === galleryState.filter
@@ -1701,18 +1881,13 @@ let galleryState = { filter: 'all', current: 0, items: [] };
       const item = document.createElement('button');
       item.className = 'gallery-item';
       item.setAttribute('aria-label', photo.caption || 'View photo');
+      // staggered reveal
+      item.style.animationDelay = (idx * 60) + 'ms';
 
       const aspectClass = 'aspect-' + (photo.aspect || 'portrait');
-
-      let mediaHtml;
-      if (photo.src) {
-        mediaHtml = `<img src="${photo.src}" alt="${photo.caption || 'Memory'}" loading="lazy" />`;
-      } else {
-        mediaHtml = `<div class="placeholder-img">
-          <span class="ph-label">${photo.label || 'Photo'}</span>
-          <span class="ph-hint">Add src in CONFIG.gallery.photos</span>
-        </div>`;
-      }
+      const mediaHtml = photo.src
+        ? `<img src="${photo.src}" alt="${photo.caption || 'Memory'}" loading="lazy" />`
+        : placeholderHTML(photo.label || 'Photo', 'Add src in CONFIG.gallery.photos');
 
       item.innerHTML = `
         <div class="polaroid">
@@ -1735,16 +1910,10 @@ let galleryState = { filter: 'all', current: 0, items: [] };
   function updateLightbox() {
     const photo = galleryState.items[galleryState.current];
     if (!photo) return;
-
     const wrap = $('#lbImageWrap');
-    if (photo.src) {
-      wrap.innerHTML = `<img src="${photo.src}" alt="${photo.caption || ''}" />`;
-    } else {
-      wrap.innerHTML = `<div class="placeholder-img">
-        <span class="ph-label">${photo.label || 'Photo'}</span>
-        <span class="ph-hint">Add src in CONFIG.gallery.photos</span>
-      </div>`;
-    }
+    wrap.innerHTML = photo.src
+      ? `<img src="${photo.src}" alt="${photo.caption || ''}" />`
+      : placeholderHTML(photo.label || 'Photo', 'Add src in CONFIG.gallery.photos');
     $('#lbCaption').textContent = photo.caption || '';
     $('#lbCounter').textContent = `${galleryState.current + 1} / ${galleryState.items.length}`;
   }
@@ -1777,19 +1946,17 @@ let galleryState = { filter: 'all', current: 0, items: [] };
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   LETTER
+   LETTER  (🔧 FIXED — tap anywhere on the stage)
    ═══════════════════════════════════════════════════════════════ */
 
 (function initLetter() {
   const stage = $('#letterStage');
-  const wrap = $('#envelopeWrap');
   const paper = $('#letterPaper');
   let opened = false;
 
-  // Pre-build the letter content
   paper.innerHTML = `
     <h3>${CONFIG.letter.greeting}</h3>
-    ${CONFIG.letter.paragraphs.map((p, i) => `<p data-p="${i}">${p}</p>`).join('')}
+    ${CONFIG.letter.paragraphs.map((p) => `<p>${p}</p>`).join('')}
     <p class="signature">${CONFIG.letter.signature}</p>
   `;
 
@@ -1799,8 +1966,16 @@ let galleryState = { filter: 'all', current: 0, items: [] };
     stage.classList.add('opened');
   }
 
-  wrap.addEventListener('click', openLetter);
-  wrap.addEventListener('keydown', (e) => {
+  // Tap/click anywhere on the stage opens the letter.
+  // Once opened, .opened sets pointer-events correctly so the user can scroll.
+  stage.addEventListener('click', (e) => {
+    if (opened) return;
+    e.preventDefault();
+    openLetter();
+  });
+
+  stage.addEventListener('keydown', (e) => {
+    if (opened) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       openLetter();
@@ -1814,9 +1989,11 @@ let galleryState = { filter: 'all', current: 0, items: [] };
 
 (function initFacts() {
   const grid = $('#factsGrid');
-  CONFIG.funFacts.forEach((fact) => {
+  CONFIG.funFacts.forEach((fact, idx) => {
     const card = document.createElement('button');
     card.className = 'fact-card';
+    card.setAttribute('data-reveal', '');
+    card.style.transitionDelay = (idx * 80) + 'ms';
     card.innerHTML = `
       <div>
         <p class="fact-title">${fact.title}</p>
@@ -1834,7 +2011,7 @@ let galleryState = { filter: 'all', current: 0, items: [] };
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   CAKE + CONFETTI
+   CAKE  (🔧 FIXED candles)
    ═══════════════════════════════════════════════════════════════ */
 
 (function initCake() {
@@ -1852,16 +2029,22 @@ let galleryState = { filter: 'all', current: 0, items: [] };
   for (let i = 0; i < CONFIG.cake.candleCount; i++) {
     const candle = document.createElement('button');
     candle.className = 'candle';
+    candle.type = 'button';
     candle.setAttribute('aria-label', `Candle ${i + 1}`);
-    candle.innerHTML = `<div class="flame"></div>`;
-    candle.addEventListener('click', () => {
+    candle.innerHTML = `
+      <div class="smoke"></div>
+      <div class="flame"></div>
+      <div class="candle-body"></div>
+    `;
+
+    candle.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (candle.classList.contains('blown')) return;
       candle.classList.add('blown');
       blownCount++;
-      if (blownCount >= CONFIG.cake.candleCount) {
-        onAllBlown();
-      }
+      if (blownCount >= CONFIG.cake.candleCount) onAllBlown();
     });
+
     candlesWrap.appendChild(candle);
   }
 
@@ -1874,7 +2057,6 @@ let galleryState = { filter: 'all', current: 0, items: [] };
   }
 
   $('#replayBtn').addEventListener('click', () => {
-    // Smooth fade out + reload
     document.body.style.transition = 'opacity 0.5s';
     document.body.style.opacity = '0';
     setTimeout(() => location.reload(), 500);
@@ -1882,13 +2064,11 @@ let galleryState = { filter: 'all', current: 0, items: [] };
 
   function launchConfetti() {
     if (prefersReducedMotion) return;
-
     const canvas = $('#confetti');
     canvas.hidden = false;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
-
     const colors = ['#d4af6a', '#ead9a8', '#f5efe0', '#9a7b3f', '#ffd700'];
     const pieces = Array.from({ length: 140 }, () => ({
       x: Math.random() * canvas.width,
@@ -1901,21 +2081,15 @@ let galleryState = { filter: 'all', current: 0, items: [] };
       vr: (Math.random() - 0.5) * 0.2,
       color: colors[Math.floor(Math.random() * colors.length)],
     }));
-
     const start = performance.now();
 
     function frame(now) {
       const elapsed = now - start;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       let anyVisible = false;
       for (const p of pieces) {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.06;
-        p.rot += p.vr;
+        p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.rot += p.vr;
         if (p.y < canvas.height + 30) anyVisible = true;
-
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rot);
@@ -1924,13 +2098,8 @@ let galleryState = { filter: 'all', current: 0, items: [] };
         ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
         ctx.restore();
       }
-
-      if (anyVisible && elapsed < 6500) {
-        requestAnimationFrame(frame);
-      } else {
-        canvas.hidden = true;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
+      if (anyVisible && elapsed < 6500) requestAnimationFrame(frame);
+      else { canvas.hidden = true; ctx.clearRect(0, 0, canvas.width, canvas.height); }
     }
     requestAnimationFrame(frame);
   }
@@ -1951,11 +2120,9 @@ let galleryState = { filter: 'all', current: 0, items: [] };
 
 (function initMusic() {
   if (!CONFIG.music.src) return;
-
   const toggle = $('#musicToggle');
   const audio = $('#bgMusic');
   audio.src = CONFIG.music.src;
-
   toggle.style.display = 'flex';
   let playing = false;
 
@@ -1968,9 +2135,7 @@ let galleryState = { filter: 'all', current: 0, items: [] };
       audio.play().then(() => {
         toggle.classList.add('playing');
         toggle.querySelector('#musicIcon').setAttribute('d', 'M6 5h4v14H6V5zm8 0h4v14h-4V5z');
-      }).catch(() => {
-        console.warn('Music playback failed. Add a valid audio file at:', CONFIG.music.src);
-      });
+      }).catch(() => console.warn('Music playback failed. Add a valid audio file at:', CONFIG.music.src));
     }
     playing = !playing;
   });
@@ -1980,32 +2145,37 @@ let galleryState = { filter: 'all', current: 0, items: [] };
    SCROLL REVEALS
    ═══════════════════════════════════════════════════════════════ */
 
-function initReveals() {
-  const items = document.querySelectorAll('.timeline-item');
+setupReveals = function setupReveals() {
+  // Timeline items use their own observer (dot-lighting)
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  const revealItems = document.querySelectorAll('[data-reveal]');
+
   if (!('IntersectionObserver' in window)) {
-    items.forEach((i) => i.classList.add('visible'));
+    timelineItems.forEach((i) => i.classList.add('visible'));
+    revealItems.forEach((i) => i.classList.add('revealed'));
     return;
   }
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
-  );
-  items.forEach((i) => observer.observe(i));
-}
 
-/* ═══════════════════════════════════════════════════════════════
-   SAFETY: If scripts run before DOM ready (they don't here, but for
-   robustness if you move things around later).
-   ═══════════════════════════════════════════════════════════════ */
+  const tlObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        tlObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  timelineItems.forEach((i) => tlObserver.observe(i));
 
-// Nothing else needed — all IIFEs ran on parse.
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  revealItems.forEach((i) => revealObserver.observe(i));
+};
 </script>
 </body>
-  </html>
+   </html>
