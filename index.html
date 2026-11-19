@@ -4,7 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#080808" />
-<title>The Srishti Experience — A Special Day. A Special Person.</title>
+<meta name="description" content="The Srishti Experience V2.0 — A premium interactive birthday celebration. A Special Day. A Special Person." />
+<meta property="og:title" content="The Srishti Experience V2.0" />
+<title>The Srishti Experience V2.0 — A Special Day. A Special Person.</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080808'/><text x='50' y='70' font-family='Georgia' font-size='62' fill='%23d4af6a' text-anchor='middle' font-style='italic'>S</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +14,7 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   THE SRISHTI EXPERIENCE — STYLES
+   THE SRISHTI EXPERIENCE V2.0 — STYLES
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -33,21 +35,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { 
-  scroll-behavior: smooth; 
-  -webkit-text-size-adjust: 100%;
-  /* 🔥 SLIDE BY SLIDE SCROLL */
-  scroll-snap-type: y proximity; 
-}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type: y proximity; }
 
 body {
-  background: var(--bg);
-  color: var(--ivory);
-  font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
+  background: var(--bg); color: var(--ivory); font-family: var(--font-body);
+  font-weight: 300; line-height: 1.6; min-height: 100vh; overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -62,20 +54,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 ::selection { background: rgba(212, 175, 106, 0.35); color: var(--ivory); }
 
 /* ─── LAYOUT ───────────────────────────────────────────── */
-
 .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
-
-/* 🔥 SCROLL SNAP SECTION */
-.section { 
-  position: relative; 
-  padding: clamp(4rem, 10vw, 6rem) 0; 
-  scroll-snap-align: center; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-}
-
+.section { position: relative; padding: clamp(4rem, 10vw, 6rem) 0; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
 .section-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
 .section-kicker { font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
 .section-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 5.5vw, 3.5rem); line-height: 1.15; color: var(--ivory); }
@@ -84,7 +64,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .section-subtitle { font-size: clamp(0.88rem, 2.3vw, 1rem); color: var(--ivory-dim); max-width: 540px; margin: 1rem auto 0; }
 
 /* ─── BUTTONS ─────────────────────────────────────────── */
-
 .btn {
   display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2.2rem;
   font-size: 0.76rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ivory);
@@ -94,18 +73,18 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .btn::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleY(0); transform-origin: bottom; transition: transform 0.5s var(--ease); z-index: -1; }
 .btn:hover::before { transform: scaleY(1); }
 .btn:hover { color: var(--bg); letter-spacing: 0.34em; }
+.btn-outline { background: transparent; color: var(--gold); }
+.btn-outline:hover { color: var(--bg); }
 
 /* ─── CANVAS & OVERLAYS ───────────────────────────────── */
-
 #particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 300; }
 #scrollProgress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); z-index: 70; pointer-events: none; }
 #musicToggle { position: fixed; top: 1rem; right: 1rem; z-index: 80; width: 44px; height: 44px; display: none; align-items: center; justify-content: center; color: var(--gold); background: rgba(12, 10, 8, 0.75); border: 1px solid var(--gold); border-radius: 50%; backdrop-filter: blur(12px); }
 
 /* ═══════════════════════════════════════════════════════════════
-   INTRO
+   INTRO V2
    ═══════════════════════════════════════════════════════════════ */
-
 #intro { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; z-index: 100; transition: opacity 0.8s var(--ease); }
 #intro.exiting { opacity: 0; pointer-events: none; }
 .intro-inner { text-align: center; }
@@ -114,21 +93,29 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .intro-line-2 { color: var(--gold-light); font-style: italic; animation-delay: 1.5s; margin-top: 0.5em; }
 .intro-cta-wrap { margin-top: 3rem; opacity: 0; animation: introFadeUp 1.5s var(--ease) 3s forwards; }
 .intro-skip { position: absolute; bottom: 2rem; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ivory-muted); opacity: 0; animation: fadeIn 1s 3.5s forwards; }
+.intro-progress { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--gold); width: 0%; animation: loadProgress 4.5s linear forwards; z-index: 101; }
+@keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
 @keyframes introFadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ═══════════════════════════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════════════════════════ */
-
 #hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 1.25rem; scroll-snap-align: start; }
 .hero-inner { text-align: center; max-width: 800px; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 
 .hero-portrait {
   position: relative; width: clamp(260px, 75vw, 420px); aspect-ratio: 4 / 5;
-  border-radius: 1000px 1000px 16px 16px; overflow: hidden; border: 1px solid var(--border);
+  border-radius: 1000px 1000px 16px 16px; overflow: hidden; border: 1px solid var(--gold);
   box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 60px -10px rgba(212, 175, 106, 0.25);
   opacity: 0; animation: introFadeUp 1.4s var(--ease) 0.3s forwards;
+}
+.hero-portrait::after {
+  content: ''; position: absolute; inset: 0; border: 2px solid transparent;
+  border-radius: inherit; background: linear-gradient(45deg, var(--gold), transparent) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out; mask-composite: exclude;
+  pointer-events: none; animation: borderRotate 4s linear infinite;
 }
 .hero-portrait img { width: 100%; height: 100%; object-fit: cover; }
 .placeholder-img { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1712, #0a0806); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--gold); border: 1px dashed var(--gold); border-radius: inherit; }
@@ -140,93 +127,53 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .countdown-num { font-family: var(--font-display); font-size: 1.9rem; color: var(--gold); line-height: 1; }
 .countdown-label { font-size: 0.58rem; text-transform: uppercase; color: var(--ivory-muted); }
 .hero-celebration { animation: fadeIn 1.5s ease forwards; }
+.scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); width: 20px; height: 30px; border: 2px solid var(--ivory-muted); border-radius: 10px; display: flex; justify-content: center; padding-top: 5px; opacity: 0; animation: fadeIn 2s 3s forwards; }
+.scroll-indicator::before { content: ''; width: 4px; height: 6px; background: var(--gold); border-radius: 2px; animation: scrollBounce 1.5s infinite; }
+@keyframes scrollBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
 /* ═══════════════════════════════════════════════════════════════
    TIMELINE
    ═══════════════════════════════════════════════════════════════ */
-
 .timeline-wrap { max-width: 780px; margin: 0 auto; width: 100%; }
 .timeline-items { position: relative; padding-left: 2rem; border-left: 1px solid var(--border); }
 .timeline-item { position: relative; padding-bottom: 3rem; opacity: 0; transform: translateY(30px); transition: 0.8s var(--ease); }
 .timeline-item.visible { opacity: 1; transform: translateY(0); }
-.timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.4rem; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 1px solid var(--gold); transform: translateX(-50%); }
+.timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.4rem; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 1px solid var(--gold); transform: translateX(-50%); transition: 0.6s; }
 .timeline-item.visible::before { background: var(--gold); box-shadow: 0 0 14px var(--gold-glow); }
 .timeline-chapter { font-size: 0.64rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
 .timeline-title { font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2rem); color: var(--ivory); margin-bottom: 0.2rem; }
 .timeline-quote { font-size: 0.92rem; color: var(--ivory-dim); line-height: 1.7; }
 
 /* ═══════════════════════════════════════════════════════════════
-   OUR PRECIOUS JOURNEY (Previously From This to This)
+   OUR PRECIOUS JOURNEY (THEN & NOW SLIDER)
    ═══════════════════════════════════════════════════════════════ */
-
-.then-now { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.5rem; align-items: center; max-width: 960px; margin: 0 auto; }
-@media (max-width: 640px) { .then-now { grid-template-columns: 1fr; gap: 1.5rem; } }
-.then-now-item { display: flex; flex-direction: column; gap: 0.85rem; align-items: center; }
-.then-now-frame { width: 100%; aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden; border: 1px solid var(--gold); box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7); transition: transform 0.5s; }
-.then-now-frame:hover { transform: scale(1.03); }
-.then-now-frame img { width: 100%; height: 100%; object-fit: cover; }
-.then-now-label { font-family: var(--font-display); font-size: 1.35rem; color: var(--gold); }
-.then-now-arrow { font-size: 2rem; color: var(--gold); animation: pulseArrow 2s infinite; }
-@media (max-width: 640px) { .then-now-arrow { transform: rotate(90deg); } }
-@keyframes pulseArrow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+.journey-container { max-width: 800px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 8px; border: 1px solid var(--gold); box-shadow: 0 20px 50px -15px rgba(0,0,0,0.8); aspect-ratio: 16/10; }
+.journey-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.journey-img.now { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
+.journey-slider { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 10; -webkit-appearance: none; }
+.journey-divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--gold); z-index: 5; pointer-events: none; }
+.journey-divider::after { content: '↔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px; background: var(--bg); border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 14px; }
+.journey-label { position: absolute; bottom: 1rem; font-family: var(--font-display); font-size: 1.2rem; color: var(--ivory); z-index: 6; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+.journey-label.then { left: 1rem; }
+.journey-label.now { right: 1rem; }
 
 /* ═══════════════════════════════════════════════════════════════
-   GALLERY (HORIZONTAL SLIDER & STACK)
+   GALLERY V2
    ═══════════════════════════════════════════════════════════════ */
-
 .gallery-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
 .filter-chip { padding: 0.5rem 1rem; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ivory-muted); border: 1px solid var(--border); border-radius: 100px; transition: 0.3s; }
 .filter-chip.active { color: var(--bg); background: var(--gold); border-color: var(--gold); }
-
-/* Slider Container */
-.gallery-slider {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 2rem 1rem;
-  scrollbar-width: none; 
-  -webkit-overflow-scrolling: touch;
-}
+.gallery-slider { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2rem 1rem; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .gallery-slider::-webkit-scrollbar { display: none; }
-
-/* Individual Card */
-.gallery-item {
-  flex: 0 0 70%;
-  max-width: 300px;
-  scroll-snap-align: center;
-  background: #f8f3e6;
-  padding: 0.6rem;
-  border-radius: 4px;
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
-  cursor: pointer;
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s;
-  transform: rotate(var(--rot, 0deg)) scale(0.95);
-  position: relative;
-}
-
-.gallery-item:hover, .gallery-item:focus, .gallery-item:active {
-  transform: rotate(0deg) scale(1.05);
-  z-index: 10;
-  box-shadow: 0 15px 40px -10px rgba(212, 175, 106, 0.4);
-}
-
+.gallery-item { flex: 0 0 70%; max-width: 300px; scroll-snap-align: center; background: #f8f3e6; padding: 0.6rem 0.6rem 2.2rem; border-radius: 4px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8); cursor: pointer; transition: transform 0.5s, z-index 0s; transform: rotate(var(--rot, 0deg)) scale(0.95); position: relative; }
+.gallery-item:hover, .gallery-item:active { transform: rotate(0deg) scale(1.05); z-index: 10; box-shadow: 0 15px 40px -10px rgba(212, 175, 106, 0.4); }
 .polaroid-img { width: 100%; border-radius: 2px; overflow: hidden; background: #1a1712; aspect-ratio: 3/4; }
 .polaroid-img img { width: 100%; height: 100%; object-fit: cover; }
-
-/* Lightbox */
-#lightbox { position: fixed; inset: 0; background: rgba(8, 8, 8, 0.96); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-#lightbox.open { display: flex; }
-.lightbox-img-wrap { width: 90%; max-width: 800px; max-height: 80vh; border-radius: 4px; overflow: hidden; }
-.lightbox-img-wrap img { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
-.lightbox-close { position: absolute; top: 1rem; right: 1rem; color: var(--gold); font-size: 2rem; cursor: pointer; }
-.lightbox-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: rgba(20, 18, 14, 0.8); border: 1px solid var(--border); color: var(--gold); border-radius: 50%; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; }
-.lightbox-btn.prev { left: 1rem; } .lightbox-btn.next { right: 1rem; }
+.polaroid-caption { position: absolute; bottom: 0.5rem; left: 0; right: 0; text-align: center; font-family: var(--font-display); font-style: italic; font-size: 0.85rem; color: #3a2f1d; }
 
 /* ═══════════════════════════════════════════════════════════════
-   LETTER
+   LETTER V2
    ═══════════════════════════════════════════════════════════════ */
-
 .letter-stage { max-width: 640px; margin: 0 auto; min-height: 400px; display: flex; align-items: center; justify-content: center; position: relative; perspective: 1400px; cursor: pointer; width: 100%; }
 .envelope-wrap { width: min(100%, 340px); aspect-ratio: 5 / 3.4; position: relative; transition: 0.7s var(--ease); }
 .letter-stage.opened .envelope-wrap { opacity: 0; transform: scale(0.8); pointer-events: none; }
@@ -237,20 +184,25 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .letter-paper { position: absolute; inset: 0; background: #f8f3e6; border-radius: 4px; padding: 2rem; color: #2a2013; font-family: var(--font-display); opacity: 0; transform: translateY(30px) rotateX(-15deg); transition: 0.9s var(--ease) 0.2s; overflow-y: auto; pointer-events: none; z-index: 2; display: flex; flex-direction: column; gap: 0.75rem; }
 .letter-stage.opened .letter-paper { opacity: 1; transform: translateY(0) rotateX(0); pointer-events: auto; position: relative; }
 .letter-paper .signature { text-align: right; font-style: italic; color: var(--gold-dark); margin-top: 1rem; }
-.letter-hint { position: absolute; bottom: 0; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ivory-muted); animation: pulseArrow 2s infinite; }
+.letter-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; color: var(--gold-dark); z-index: 10; display: none; }
+.letter-stage.opened .letter-close { display: block; }
+/* Typewriter */
+.typewriter { overflow: hidden; white-space: pre-wrap; border-right: 2px solid var(--gold-dark); animation: typing 2s steps(40, end), blink-caret .75s step-end infinite; }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--gold-dark); } }
 
 /* ═══════════════════════════════════════════════════════════════
    FUN FACTS & CAKE
    ═══════════════════════════════════════════════════════════════ */
-
 .facts-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 900px; margin: 0 auto; width: 100%; }
 @media (min-width: 640px) { .facts-grid { grid-template-columns: repeat(2, 1fr); } }
-.fact-card { padding: 1.5rem; background: var(--glass); border: 1px solid var(--border); border-radius: 8px; text-align: left; cursor: pointer; display: flex; flex-direction: column; }
+.fact-card { padding: 1.5rem; background: var(--glass); border: 1px solid var(--border); border-radius: 8px; text-align: left; cursor: pointer; display: flex; flex-direction: column; transition: transform 0.2s; }
+.fact-card:hover { transform: perspective(500px) rotateX(2deg) rotateY(2deg); }
 .fact-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--ivory); }
 .fact-desc { font-size: 0.85rem; color: var(--ivory-dim); max-height: 0; opacity: 0; overflow: hidden; transition: 0.5s; }
 .fact-card.revealed .fact-desc { max-height: 200px; opacity: 1; margin-top: 1rem; }
 
-.cake-stage { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.cake-stage { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .cake { position: relative; width: 300px; height: 240px; margin: 2rem auto 0; }
 .cake-candles { position: absolute; top: 0; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
 .candle { position: relative; width: 30px; height: 68px; cursor: pointer; }
@@ -259,14 +211,26 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .candle.blown .flame { opacity: 0; transform: translateX(-50%) scale(0.1); }
 .candle.blown .candle-body { background: #4a3d22; }
 @keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.1); } }
-.cake-tier-top { position: absolute; top: 64px; left: 50%; transform: translateX(-50%); width: 180px; height: 60px; background: linear-gradient(to bottom, var(--gold), var(--gold-dark)); border-radius: 4px 4px 0 0; }
-.cake-tier-bottom { position: absolute; top: 124px; left: 50%; transform: translateX(-50%); width: 240px; height: 80px; background: linear-gradient(to bottom, var(--gold), var(--gold-dark)); border-radius: 4px 4px 8px 8px; }
+.cake-tier-top { position: absolute; top: 64px; left: 50%; transform: translateX(-50%); width: 180px; height: 60px; background: linear-gradient(to bottom, var(--gold), var(--gold-dark)); border-radius: 4px 4px 0 0; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2); }
+.cake-tier-bottom { position: absolute; top: 124px; left: 50%; transform: translateX(-50%); width: 240px; height: 80px; background: linear-gradient(to bottom, var(--gold), var(--gold-dark)); border-radius: 4px 4px 8px 8px; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2); }
 .cake-plate { position: absolute; top: 204px; left: 50%; transform: translateX(-50%); width: 300px; height: 14px; background: #6d5a2e; border-radius: 50%; }
 .wish-message { text-align: center; opacity: 0; transform: translateY(20px); transition: 0.8s; pointer-events: none; }
 .wish-message.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .wish-title { font-family: var(--font-display); font-size: 2rem; color: var(--gold); }
+.btn-reset { margin-top: 1rem; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory-muted); border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+.btn-reset:hover { color: var(--gold); border-color: var(--gold); }
 
-footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+/* ═══════════════════════════════════════════════════════════════
+   SECRET SURPRISE & FINALE
+   ═══════════════════════════════════════════════════════════════ */
+#secretSection, #finaleSection { text-align: center; padding: 6rem 1.25rem; background: rgba(8,8,8,0.8); }
+.secret-content { max-width: 600px; margin: 0 auto; display: none; opacity: 0; transform: scale(0.9); transition: 1s var(--ease); }
+.secret-content.show { display: block; opacity: 1; transform: scale(1); }
+.secret-text { font-family: var(--font-display); font-style: italic; font-size: clamp(1.2rem, 4vw, 1.8rem); color: var(--gold-light); line-height: 1.6; margin-bottom: 2rem; text-shadow: 0 0 20px rgba(212, 175, 106, 0.3); }
+.finale-title { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.5rem); color: var(--ivory); margin-bottom: 1rem; }
+.finale-sub { font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: var(--ivory-dim); margin-bottom: 3rem; }
+
+footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); }
 </style>
 </head>
 
@@ -278,6 +242,7 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
 
 <!-- INTRO -->
 <div id="intro">
+  <div class="intro-progress"></div>
   <div class="intro-inner">
     <div class="intro-ornament"></div>
     <p class="intro-line" id="introLine1"></p>
@@ -297,6 +262,7 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
       <p class="hero-tagline" id="heroTagline">Today, the spotlight belongs to you.</p>
       <div id="countdownContainer"></div>
     </div>
+    <div class="scroll-indicator"></div>
   </section>
 
   <!-- TIMELINE -->
@@ -310,29 +276,34 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
     </div>
   </section>
 
-  <!-- 🔥 OUR PRECIOUS JOURNEY (Text Changed Here) -->
+  <!-- JOURNEY -->
   <section class="section" id="thenNow">
     <div class="container">
       <div class="section-head">
         <p class="section-kicker">Time Flies</p>
         <h2 class="section-title">Our Precious <em>Journey</em></h2>
-        <p class="section-subtitle">From where it all started, to where we are today.</p>
+        <p class="section-subtitle">Drag the slider to see the transition.</p>
       </div>
-      <div class="then-now" id="thenNowWrap"></div>
+      <div class="journey-container" id="journeyContainer">
+        <img class="journey-img then" src="photos/group-old.jpg" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'500\'%3E%3Crect width=\'800\' height=\'500\' fill=\'%231a1712\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' fill=\'%23d4af6a\' font-family=\'sans-serif\' text-anchor=\'middle\'%3EAdd group-old.jpg%3C/text%3E%3C/svg%3E'" />
+        <img class="journey-img now" id="journeyNowImg" src="photos/group-now.jpg" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'500\'%3E%3Crect width=\'800\' height=\'500\' fill=\'%231a1712\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' fill=\'%23d4af6a\' font-family=\'sans-serif\' text-anchor=\'middle\'%3EAdd group-now.jpg%3C/text%3E%3C/svg%3E'" />
+        <div class="journey-divider" id="journeyDivider"></div>
+        <span class="journey-label then">Then</span>
+        <span class="journey-label now">Now</span>
+        <input type="range" min="0" max="100" value="50" class="journey-slider" id="journeySlider" aria-label="Image comparison slider">
+      </div>
     </div>
   </section>
 
-  <!-- GALLERY (SLIDE & STACK) -->
+  <!-- GALLERY -->
   <section class="section" id="gallery">
     <div class="container">
       <div class="section-head">
         <p class="section-kicker">The Memory Vault</p>
         <h2 class="section-title">Moments Worth <em>Keeping</em></h2>
-        <p class="section-subtitle">Swipe or scroll to see the stack.</p>
       </div>
       <div class="gallery-filters" id="galleryFilters"></div>
     </div>
-    <!-- Slider Container (Full Width) -->
     <div style="width:100%; overflow:hidden;">
       <div class="gallery-slider" id="gallerySlider"></div>
     </div>
@@ -347,8 +318,11 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
       </div>
       <div class="letter-stage" id="letterStage">
         <div class="envelope-wrap"><div class="envelope-body"></div><div class="envelope-flap"></div><div class="wax-seal">S</div></div>
-        <div class="letter-hint">Tap to open</div>
-        <div class="letter-paper" id="letterPaper"></div>
+        <div class="letter-hint" id="letterHint">Tap to open</div>
+        <div class="letter-paper" id="letterPaper">
+          <button class="letter-close" id="letterClose">✕</button>
+          <div id="letterTextContainer"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -379,9 +353,33 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
         <div class="wish-message" id="wishMessage">
           <h3 class="wish-title" id="wishTitle"></h3>
           <p style="color:var(--ivory-dim); margin-bottom:1.5rem" id="wishText"></p>
-          <button class="btn" id="replayBtn">Replay the Magic</button>
+          <button class="btn btn-outline" id="resetCakeBtn">Reset Candles</button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- SECRET SURPRISE -->
+  <section class="section" id="secretSection">
+    <div class="container">
+      <div id="secretTrigger">
+        <h2 class="section-title">One Last <em>Thing...</em></h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">There is something hidden here.</p>
+        <button class="btn" id="secretBtn">Tap to Reveal</button>
+      </div>
+      <div class="secret-content" id="secretContent">
+        <p class="secret-text" id="secretText"></p>
+        <div style="width: 50px; height: 2px; background: var(--gold); margin: 0 auto;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section class="section" id="finaleSection">
+    <div class="container">
+      <h2 class="finale-title">Some memories become stories.<br>Some friendships become a part of life.</h2>
+      <p class="finale-sub">Thank you for being one of the best parts of this journey.</p>
+      <button class="btn" id="replayBtn">Replay the Experience</button>
     </div>
   </section>
 
@@ -394,7 +392,7 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
 <div id="lightbox">
   <button class="lightbox-close" id="lbClose">✕</button>
   <button class="lightbox-btn prev" id="lbPrev">‹</button>
-  <div class="lightbox-img-wrap"><img id="lbImg" src="" alt="" /></div>
+  <div class="lightbox-img-wrap"><img id="lbImg" src="" alt="" /><div class="polaroid-caption" id="lbCaption" style="position:relative; margin-top:10px; color:var(--ivory); font-size:1.2rem;"></div></div>
   <button class="lightbox-btn next" id="lbNext">›</button>
 </div>
 
@@ -402,18 +400,30 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border);
 <audio id="bgMusic" loop preload="none"></audio>
 
 <script>
+/* ═══════════════════════════════════════════════════════════════
+   THE SRISHTI EXPERIENCE V2.0 — CONFIGURATION
+   ═══════════════════════════════════════════════════════════════ */
+
 const CONFIG = {
   friendName: 'Srishti',
   birthdayMonth: 11,
   birthdayDay: 25,
-  heroImage: 'srishti-photos.jpg', // Main Photo
   
-  intro: { line1: 'Some people make ordinary days unforgettable...', line2: 'And today is all about one of them.' },
+  // Main Photo
+  heroImage: 'srishti-photos.jpg', 
+  
+  intro: { 
+    line1: 'Some people make ordinary days unforgettable...', 
+    line2: 'And today is all about one of them.' 
+  },
 
   hero: {
-    kicker: 'Happy Birthday', tagline: 'Today, the spotlight belongs to you.',
-    birthdayLabel: "Today is the day!", birthdaySub: 'Happy Birthday! Make it a great one.',
-    afterLabel: 'Hope your birthday was as wonderful as you are.', afterSub: 'See you next year!',
+    kicker: 'Happy Birthday', 
+    tagline: 'Today, the spotlight belongs to you.',
+    birthdayLabel: "Today is the day!", 
+    birthdaySub: 'Happy Birthday! Make it a great one.',
+    afterLabel: 'Hope your birthday was as wonderful as you are.', 
+    afterSub: 'See you next year!',
   },
 
   timeline: [
@@ -423,24 +433,22 @@ const CONFIG = {
     { chapter: '04', title: 'Still Going Strong', quote: 'Different days, changing circumstances, but the friendship remains special.' },
   ],
 
-  // 🔥 Yahan Labels change kar diye hain
-  thenNow: {
-    then: { label: 'Then', src: 'photos/group-old.jpg' },
-    now: { label: 'Now', src: 'photos/group-now.jpg' },
-  },
-
   gallery: {
-    filters: [{ id: 'all', label: 'All' }],
-    // 🔥 8 Photos Linked Here
+    filters: [
+      { id: 'all', label: 'All' },
+      { id: 'early', label: 'Early Days' },
+      { id: 'fun', label: 'Fun Moments' }
+    ],
+    // Add captions here
     photos: [
-      { id: 1, src: 'photos/photos-1.jpg' },
-      { id: 2, src: 'photos/photos-2.jpg' },
-      { id: 3, src: 'photos/photos-3.jpg' },
-      { id: 4, src: 'photos/photos-4.jpg' },
-      { id: 5, src: 'photos/photos-5.jpg' },
-      { id: 6, src: 'photos/photos-6.jpg' },
-      { id: 7, src: 'photos/photos-7.jpg' },
-      { id: 8, src: 'photos/photos-8.jpg' }, 
+      { id: 1, src: 'photos/photos-1.jpg', caption: 'Good times', category: 'early' },
+      { id: 2, src: 'photos/photos-2.jpg', caption: 'Always laughing', category: 'fun' },
+      { id: 3, src: 'photos/photos-3.jpg', caption: '', category: 'fun' },
+      { id: 4, src: 'photos/photos-4.jpg', caption: 'Unforgettable', category: 'early' },
+      { id: 5, src: 'photos/photos-5.jpg', caption: '', category: 'fun' },
+      { id: 6, src: 'photos/photos-6.jpg', caption: 'Crazy days', category: 'fun' },
+      { id: 7, src: 'photos/photos-7.jpg', caption: '', category: 'early' },
+      { id: 8, src: 'photos/photos-8.jpg', caption: 'Best memories', category: 'fun' }, 
     ],
   },
 
@@ -465,106 +473,393 @@ const CONFIG = {
     { title: 'Main Character Energy', description: 'Walks into a room and suddenly it is her story.' },
   ],
 
-  cake: { candleCount: 5, allOutTitle: 'Wish Made!', wishMessage: 'May your next chapter be even more amazing than the last one. Keep shining!', replayLabel: 'Replay' },
+  cake: { 
+    candleCount: 5, 
+    allOutTitle: 'Wish Made!', 
+    wishMessage: 'May your next chapter be even more amazing than the last one. Keep shining!' 
+  },
+
+  secret: {
+    buttonText: 'Tap to Reveal',
+    message: "You are one of those rare people who make everything better just by being there. Don't ever change."
+  },
+
+  finale: {
+    title: "Some memories become stories.<br>Some friendships become a part of life.",
+    subtitle: "Thank you for being one of the best parts of this journey."
+  },
+
+  music: {
+    src: '', // e.g., 'birthday-music.mp3' (Leave empty to hide music button)
+  },
+
+  footer: {
+    note: 'Made with care, for a very special friend.'
+  }
 };
 
 const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
 
-/* ─── INTRO LOGIC ────────────────────────────── */
-$('#introLine1').textContent = CONFIG.intro.line1;
-$('#introLine2').textContent = CONFIG.intro.line2;
+/* ═══════════════════════════════════════════════════════════════
+   INITIALIZATION & STATE
+   ═══════════════════════════════════════════════════════════════ */
+
 let entered = false;
-function enter() {
-  if (entered) return; entered = true;
-  $('#intro').classList.add('exiting');
-  setTimeout(() => { $('#intro').style.display = 'none'; $('#main').hidden = false; window.scrollTo(0,0); initReveals(); }, 800);
+let countdownInterval = null;
+let currentFilter = 'all';
+let galleryData = [...CONFIG.gallery.photos];
+
+function init() {
+  loadText();
+  renderTimeline();
+  renderGallery();
+  renderFacts();
+  setupCountdown();
+  setupJourneySlider();
+  setupLetter();
+  setupCake();
+  setupSecret();
+  initReveals();
+  setupMusic();
 }
-$('#enterBtn').onclick = enter; $('#skipBtn').onclick = enter;
 
-/* ─── HERO ───────────────────────────────────── */
-$('#heroImg').src = CONFIG.heroImage;
-$('#heroImg').onerror = () => { $('#heroPortrait').innerHTML = '<div class="placeholder-img">Add srishti-photos.jpg</div>'; };
-$('#heroKicker').textContent = CONFIG.hero.kicker; $('#heroName').textContent = CONFIG.friendName; $('#heroTagline').textContent = CONFIG.hero.tagline;
-
-let interval;
-function updateTimer() {
-  const now = new Date(); const bday = new Date(now.getFullYear(), CONFIG.birthdayMonth-1, CONFIG.birthdayDay);
-  const container = $('#countdownContainer');
-  if (now >= bday) { container.innerHTML = `<h3 style="color:var(--gold)">${CONFIG.hero.afterLabel}</h3>`; clearInterval(interval); return; }
-  const d = bday - now; const p = (n) => String(n).padStart(2,'0');
-  container.innerHTML = `<div class="countdown">
-    <div class="countdown-unit"><span class="countdown-num">${p(Math.floor(d/86400000))}</span><span class="countdown-label">Days</span></div>
-    <div class="countdown-unit"><span class="countdown-num">${p(Math.floor((d%86400000)/3600000))}</span><span class="countdown-label">Hrs</span></div>
-    <div class="countdown-unit"><span class="countdown-num">${p(Math.floor((d%3600000)/60000))}</span><span class="countdown-label">Min</span></div>
-  </div>`;
-}
-updateTimer(); interval = setInterval(updateTimer, 1000);
-
-/* ─── TIMELINE ───────────────────────────────── */
-CONFIG.timeline.forEach(t => {
-  $('#timelineItems').innerHTML += `<div class="timeline-item"><div class="timeline-chapter">Chapter ${t.chapter}</div><h3 class="timeline-title">${t.title}</h3><p class="timeline-quote">${t.quote}</p></div>`;
-});
-
-/* ─── THEN / NOW ─────────────────────────────── */
-function tnHtml(item) { return `<div class="then-now-item"><div class="then-now-frame">${item.src ? `<img src="${item.src}" onerror="this.parentElement.innerHTML='<div class=\\'placeholder-img\\'>Add Photo</div>'">` : `<div class="placeholder-img">Add Photo</div>`}</div><p class="then-now-label">${item.label}</p></div>`; }
-$('#thenNowWrap').innerHTML = `${tnHtml(CONFIG.thenNow.then)}<div class="then-now-arrow">→</div>${tnHtml(CONFIG.thenNow.now)}`;
-
-/* ─── GALLERY (SLIDER) ───────────────────────── */
-const gSlider = $('#gallerySlider');
-CONFIG.gallery.photos.forEach((p, i) => {
-  const item = document.createElement('div');
-  item.className = 'gallery-item';
-  item.style.setProperty('--rot', `${Math.random() * 8 - 4}deg`);
+function loadText() {
+  $('#introLine1').textContent = CONFIG.intro.line1;
+  $('#introLine2').textContent = CONFIG.intro.line2;
+  $('#heroKicker').textContent = CONFIG.hero.kicker;
+  $('#heroName').textContent = CONFIG.friendName;
+  $('#heroTagline').textContent = CONFIG.hero.tagline;
+  $('#wishTitle').textContent = CONFIG.cake.allOutTitle;
+  $('#wishText').textContent = CONFIG.cake.wishMessage;
+  $('#secretText').textContent = CONFIG.secret.message;
+  $('#secretBtn').textContent = CONFIG.secret.buttonText;
+  $('#footerNote').textContent = CONFIG.footer.note;
   
-  item.innerHTML = `<div class="polaroid-img"><img src="${p.src || ''}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-img\\' style=\\'border:none;border-radius:0;\\'>Add Photo</div>'" loading="lazy"></div>`;
-  item.onclick = () => openLightbox(i);
-  gSlider.appendChild(item);
+  // Hero Image
+  const heroImg = $('#heroImg');
+  heroImg.src = CONFIG.heroImage;
+  heroImg.onerror = () => { $('#heroPortrait').innerHTML = '<div class="placeholder-img">Add srishti-photos.jpg</div>'; };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INTRO
+   ═══════════════════════════════════════════════════════════════ */
+
+function enterExperience() {
+  if (entered) return;
+  entered = true;
+  $('#intro').classList.add('exiting');
+  setTimeout(() => { 
+    $('#intro').style.display = 'none'; 
+    $('#main').hidden = false; 
+    window.scrollTo(0,0); 
+    initReveals(); 
+  }, 800);
+}
+
+$('#enterBtn').addEventListener('click', enterExperience);
+$('#skipBtn').addEventListener('click', enterExperience);
+
+/* ═══════════════════════════════════════════════════════════════
+   COUNTDOWN (Bug-Free)
+   ═══════════════════════════════════════════════════════════════ */
+
+function setupCountdown() {
+  const container = $('#countdownContainer');
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  
+  // Target is Nov 25 (Month 10 in JS is November)
+  let bday = new Date(currentYear, 10, 25, 0, 0, 0);
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  if (today.getTime() === bday.getTime()) {
+    // TODAY IS BIRTHDAY
+    container.innerHTML = `
+      <div class="hero-celebration">
+        <h3 style="color:var(--gold); font-family:var(--font-display); font-size:1.8rem;">${CONFIG.hero.birthdayLabel}</h3>
+        <p style="color:var(--ivory-dim);">${CONFIG.hero.birthdaySub}</p>
+      </div>`;
+    return;
+  } 
+  
+  if (today > bday) {
+    // BIRTHDAY PASSED THIS YEAR (Show greeting)
+    container.innerHTML = `
+      <div class="hero-celebration">
+        <h3 style="color:var(--gold); font-family:var(--font-display); font-size:1.5rem;">${CONFIG.hero.afterLabel}</h3>
+        <p style="color:var(--ivory-dim);">${CONFIG.hero.afterSub}</p>
+      </div>`;
+    return; // Stop, don't show countdown
+  }
+
+  // COUNTDOWN (Before Birthday)
+  if (countdownInterval) clearInterval(countdownInterval);
+  
+  function update() {
+    const now = new Date();
+    const diff = bday - now;
+    if (diff <= 0) {
+      clearInterval(countdownInterval);
+      setupCountdown(); // Recalculate
+      return;
+    }
+    
+    const p = (n) => String(n).padStart(2,'0');
+    container.innerHTML = `<div class="countdown">
+      <div class="countdown-unit"><span class="countdown-num">${p(Math.floor(diff/86400000))}</span><span class="countdown-label">Days</span></div>
+      <div class="countdown-unit"><span class="countdown-num">${p(Math.floor((diff%86400000)/3600000))}</span><span class="countdown-label">Hrs</span></div>
+      <div class="countdown-unit"><span class="countdown-num">${p(Math.floor((diff%3600000)/60000))}</span><span class="countdown-label">Min</span></div>
+      <div class="countdown-unit"><span class="countdown-num">${p(Math.floor((diff%60000)/1000))}</span><span class="countdown-label">Sec</span></div>
+    </div>`;
+  }
+  
+  update();
+  countdownInterval = setInterval(update, 1000);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TIMELINE
+   ═══════════════════════════════════════════════════════════════ */
+
+function renderTimeline() {
+  const container = $('#timelineItems');
+  CONFIG.timeline.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'timeline-item';
+    div.innerHTML = `
+      <div class="timeline-chapter">Chapter ${t.chapter}</div>
+      <h3 class="timeline-title">${t.title}</h3>
+      <p class="timeline-quote">${t.quote}</p>
+    `;
+    container.appendChild(div);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   JOURNEY (THEN & NOW SLIDER)
+   ═══════════════════════════════════════════════════════════════ */
+
+function setupJourneySlider() {
+  const slider = $('#journeySlider');
+  const nowImg = $('#journeyNowImg');
+  const divider = $('#journeyDivider');
+
+  slider.addEventListener('input', (e) => {
+    const val = e.target.value;
+    nowImg.style.clipPath = `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
+    divider.style.left = `${val}%`;
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GALLERY & FILTERS
+   ═══════════════════════════════════════════════════════════════ */
+
+function renderGallery() {
+  const filtersContainer = $('#galleryFilters');
+  const slider = $('#gallerySlider');
+  
+  // Render Filters
+  filtersContainer.innerHTML = '';
+  CONFIG.gallery.filters.forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = `filter-chip ${f.id === currentFilter ? 'active' : ''}`;
+    btn.textContent = f.label;
+    btn.onclick = () => {
+      currentFilter = f.id;
+      $$('.filter-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      filterGallery();
+    };
+    filtersContainer.appendChild(btn);
+  });
+
+  // Initial Gallery render
+  filterGallery();
+}
+
+function filterGallery() {
+  const slider = $('#gallerySlider');
+  slider.innerHTML = '';
+  
+  const filtered = currentFilter === 'all' 
+    ? CONFIG.gallery.photos 
+    : CONFIG.gallery.photos.filter(p => p.category === currentFilter);
+
+  filtered.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.style.setProperty('--rot', `${Math.random() * 8 - 4}deg`);
+    
+    const img = document.createElement('img');
+    img.src = p.src;
+    img.loading = 'lazy';
+    img.onerror = () => { img.parentElement.innerHTML = '<div class="placeholder-img">Add Photo</div>'; };
+    
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'polaroid-img';
+    imgWrap.appendChild(img);
+    
+    item.appendChild(imgWrap);
+    
+    if (p.caption) {
+      const cap = document.createElement('div');
+      cap.className = 'polaroid-caption';
+      cap.textContent = p.caption;
+      item.appendChild(cap);
+    }
+    
+    item.onclick = () => openLightbox(filtered, i);
+    slider.appendChild(item);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHTBOX
+   ═══════════════════════════════════════════════════════════════ */
+
+let lbImages = [];
+let lbIndex = 0;
+const lightbox = $('#lightbox');
+
+function openLightbox(images, index) {
+  lbImages = images;
+  lbIndex = index;
+  updateLightbox();
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightbox() {
+  const imgObj = lbImages[lbIndex];
+  $('#lbImg').src = imgObj.src;
+  $('#lbCaption').textContent = imgObj.caption || '';
+}
+
+$('#lbClose').onclick = () => { lightbox.classList.remove('open'); document.body.style.overflow = ''; };
+$('#lbPrev').onclick = () => { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; updateLightbox(); };
+$('#lbNext').onclick = () => { lbIndex = (lbIndex + 1) % lbImages.length; updateLightbox(); };
+
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') $('#lbClose').click();
+  if (e.key === 'ArrowLeft') $('#lbPrev').click();
+  if (e.key === 'ArrowRight') $('#lbNext').click();
 });
 
-/* ─── LIGHTBOX ───────────────────────────────── */
-let curIdx = 0;
-function openLightbox(i) { curIdx = i; $('#lbImg').src = CONFIG.gallery.photos[i].src; $('#lightbox').classList.add('open'); }
-$('#lbClose').onclick = () => $('#lightbox').classList.remove('open');
-$('#lbPrev').onclick = () => { curIdx = (curIdx - 1 + CONFIG.gallery.photos.length) % CONFIG.gallery.photos.length; $('#lbImg').src = CONFIG.gallery.photos[curIdx].src; };
-$('#lbNext').onclick = () => { curIdx = (curIdx + 1) % CONFIG.gallery.photos.length; $('#lbImg').src = CONFIG.gallery.photos[curIdx].src; };
+/* ═══════════════════════════════════════════════════════════════
+   LETTER
+   ═══════════════════════════════════════════════════════════════ */
 
-/* ─── LETTER ─────────────────────────────────── */
-const letterStage = $('#letterStage');
-$('#letterPaper').innerHTML = `<h3>${CONFIG.letter.greeting}</h3>${CONFIG.letter.paragraphs.map(p=>`<p>${p}</p>`).join('')}<p class="signature">${CONFIG.letter.signature}</p>`;
-letterStage.onclick = () => letterStage.classList.add('opened');
+function setupLetter() {
+  const stage = $('#letterStage');
+  const closeBtn = $('#letterClose');
+  const textContainer = $('#letterTextContainer');
+  
+  // Build letter
+  textContainer.innerHTML = `<h3 style="margin-bottom:1rem;">${CONFIG.letter.greeting}</h3>`;
+  CONFIG.letter.paragraphs.forEach(p => {
+    textContainer.innerHTML += `<p style="margin-bottom:1rem; line-height:1.7;">${p}</p>`;
+  });
+  textContainer.innerHTML += `<p class="signature">${CONFIG.letter.signature}</p>`;
 
-/* ─── FUN FACTS ──────────────────────────────── */
-CONFIG.funFacts.forEach(f => {
-  const card = document.createElement('div');
-  card.className = 'fact-card';
-  card.innerHTML = `<h3 class="fact-title">${f.title}</h3><p class="fact-desc">${f.description}</p>`;
-  card.onclick = () => card.classList.toggle('revealed');
-  $('#factsGrid').appendChild(card);
-});
-
-/* ─── CAKE ───────────────────────────────────── */
-let blown = 0;
-for (let i=0; i<CONFIG.cake.candleCount; i++) {
-  const c = document.createElement('div'); c.className = 'candle';
-  c.innerHTML = `<div class="flame"></div><div class="candle-body"></div>`;
-  c.onclick = () => {
-    if (c.classList.contains('blown')) return;
-    c.classList.add('blown'); blown++;
-    if (blown === CONFIG.cake.candleCount) {
-      setTimeout(() => { $('#wishMessage').classList.add('show'); launchConfetti(); }, 400);
+  stage.onclick = (e) => {
+    if (e.target === closeBtn || closeBtn.contains(e.target)) return;
+    if (!stage.classList.contains('opened')) {
+      stage.classList.add('opened');
+      // Optional: Add typewriter class dynamically here if needed
     }
   };
-  $('#cakeCandles').appendChild(c);
-}
-$('#wishTitle').textContent = CONFIG.cake.allOutTitle; $('#wishText').textContent = CONFIG.cake.wishMessage; $('#replayBtn').textContent = CONFIG.cake.replayLabel;
-$('#replayBtn').onclick = () => { document.body.style.opacity='0'; setTimeout(()=>location.reload(), 500); };
 
-/* ─── CONFETTI ───────────────────────────────── */
+  closeBtn.onclick = (e) => {
+    e.stopPropagation();
+    stage.classList.remove('opened');
+  };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FUN FACTS
+   ═══════════════════════════════════════════════════════════════ */
+
+function renderFacts() {
+  const grid = $('#factsGrid');
+  CONFIG.funFacts.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'fact-card';
+    card.innerHTML = `<h3 class="fact-title">${f.title}</h3><p class="fact-desc">${f.description}</p>`;
+    card.onclick = () => card.classList.toggle('revealed');
+    grid.appendChild(card);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAKE
+   ═══════════════════════════════════════════════════════════════ */
+
+let blownCount = 0;
+
+function setupCake() {
+  const container = $('#cakeCandles');
+  container.innerHTML = '';
+  blownCount = 0;
+  $('#wishMessage').classList.remove('show');
+
+  for (let i=0; i<CONFIG.cake.candleCount; i++) {
+    const c = document.createElement('div'); 
+    c.className = 'candle';
+    c.innerHTML = `<div class="flame"></div><div class="candle-body"></div>`;
+    c.onclick = () => {
+      if (c.classList.contains('blown')) return;
+      c.classList.add('blown'); 
+      blownCount++;
+      if (blownCount === CONFIG.cake.candleCount) {
+        setTimeout(() => { $('#wishMessage').classList.add('show'); launchConfetti(); }, 400);
+      }
+    };
+    container.appendChild(c);
+  }
+
+  $('#resetCakeBtn').onclick = () => setupCake();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECRET SURPRISE
+   ═══════════════════════════════════════════════════════════════ */
+
+function setupSecret() {
+  const btn = $('#secretBtn');
+  const content = $('#secretContent');
+  const trigger = $('#secretTrigger');
+
+  btn.onclick = () => {
+    trigger.style.display = 'none';
+    content.classList.add('show');
+    // Optional: burst particles here
+  };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REPLAY
+   ═══════════════════════════════════════════════════════════════ */
+
+$('#replayBtn').onclick = () => {
+  document.body.style.transition = 'opacity 0.5s';
+  document.body.style.opacity = '0';
+  setTimeout(() => window.location.reload(), 500);
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   CONFETTI & PARTICLES
+   ═══════════════════════════════════════════════════════════════ */
+
 function launchConfetti() {
   const cv = $('#confetti'); cv.hidden = false; cv.width = innerWidth; cv.height = innerHeight;
   const ctx = cv.getContext('2d'); const cols = ['#d4af6a','#ead9a8','#f5efe0','#ffd700'];
   const ps = Array.from({length:100}, () => ({ x:Math.random()*cv.width, y:-20, w:Math.random()*8+4, vx:Math.random()*2-1, vy:Math.random()*3+2, r:Math.random()*6, c:cols[Math.floor(Math.random()*4)] }));
   let start = performance.now();
+  
   function draw(now) {
     ctx.clearRect(0,0,cv.width,cv.height);
     ps.forEach(p => { p.x+=p.vx; p.y+=p.vy; p.r+=0.1; ctx.fillStyle=p.c; ctx.globalAlpha=Math.max(0, 1-(now-start)/4000); ctx.fillRect(p.x,p.y,p.w,p.w); });
@@ -573,19 +868,67 @@ function launchConfetti() {
   requestAnimationFrame(draw);
 }
 
-/* ─── SCROLL REVEALS & PARTICLES ─────────────── */
-function initReveals() {
-  const obs = new IntersectionObserver((e) => { e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.2 });
-  document.querySelectorAll('.timeline-item').forEach(i => obs.observe(i));
-}
-
-(function particles() {
+function initParticles() {
   const cv = $('#particles'); const ctx = cv.getContext('2d');
   cv.width = innerWidth; cv.height = innerHeight;
   const ps = Array.from({length:40}, () => ({ x:Math.random()*cv.width, y:Math.random()*cv.height, s:Math.random()*1.5+0.5, vy:-Math.random()*0.3-0.1 }));
-  function draw() { ctx.clearRect(0,0,cv.width,cv.height); ps.forEach(p => { p.y+=p.vy; if(p.y<0) p.y=cv.height; ctx.fillStyle='rgba(212,175,106,0.3)'; ctx.beginPath(); ctx.arc(p.x,p.y,p.s,0,Math.PI*2); ctx.fill(); }); requestAnimationFrame(draw); }
+  
+  function draw() { 
+    ctx.clearRect(0,0,cv.width,cv.height); 
+    ps.forEach(p => { 
+      p.y+=p.vy; if(p.y<0) p.y=cv.height; 
+      ctx.fillStyle='rgba(212,175,106,0.3)'; 
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.s,0,Math.PI*2); ctx.fill(); 
+    }); 
+    requestAnimationFrame(draw); 
+  }
   draw();
-})();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MUSIC & REVEALS
+   ═══════════════════════════════════════════════════════════════ */
+
+function setupMusic() {
+  if (!CONFIG.music.src) return;
+  const toggle = $('#musicToggle');
+  const audio = $('#bgMusic');
+  audio.src = CONFIG.music.src;
+  toggle.style.display = 'flex';
+  let playing = false;
+
+  toggle.addEventListener('click', () => {
+    if (playing) {
+      audio.pause();
+      toggle.classList.remove('playing');
+      $('#musicIcon').setAttribute('d', 'M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z');
+    } else {
+      audio.play().then(() => {
+        toggle.classList.add('playing');
+        $('#musicIcon').setAttribute('d', 'M6 5h4v14H6V5zm8 0h4v14h-4V5z');
+      }).catch(() => console.warn('Audio file missing or blocked.'));
+    }
+    playing = !playing;
+  });
+}
+
+function initReveals() {
+  if (!('IntersectionObserver' in window)) return;
+  const obs = new IntersectionObserver((e) => { 
+    e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }); 
+  }, { threshold: 0.2 });
+  
+  document.querySelectorAll('.timeline-item').forEach(i => obs.observe(i));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BOOT
+   ═══════════════════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+  initParticles();
+});
 </script>
 </body>
 </html>
