@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#070707" />
 <meta name="description" content="Happy Birthday Srishti — A friendship story from Class 10 tuition to today." />
-<title>Happy Birthday Srishti — From Kanak</title>
+<title>Happy Birthday Srishti — From Arpit</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23070707'/><text x='50' y='70' font-family='Georgia' font-size='62' fill='%23d4af6a' text-anchor='middle' font-style='italic'>S</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -87,7 +87,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to bottom, rgba(7, 7, 7, 0.96) 70%, rgba(7, 7, 7, 0));
+  background: var(--bg);
+  border-bottom: 1px solid rgba(212, 175, 106, 0.1);
   z-index: 50;
 }
 
@@ -215,7 +216,7 @@ img {
   overscroll-behavior-y: contain;
   touch-action: pan-y;
   padding:
-    calc(var(--top-bar-h) + env(safe-area-inset-top, 0px) + 0.75rem)
+    calc(var(--top-bar-h) + env(safe-area-inset-top, 0px) + 0.9rem)
     clamp(1.1rem, 4vw, 2.5rem)
     calc(var(--bottom-bar-h) + env(safe-area-inset-bottom, 0px) + 1rem);
   display: flex;
@@ -466,7 +467,7 @@ img {
   background: var(--surface);
   border: 1px solid var(--border-strong);
   border-radius: 8px;
-  padding: 0.55rem;
+  padding: 0.5rem;
 }
 
 .photo-frame-inner {
@@ -481,15 +482,6 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.photo-caption {
-  padding-top: 0.55rem;
-  text-align: center;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.96rem;
-  color: var(--gold-light);
 }
 
 .dual-frames {
@@ -588,7 +580,7 @@ img {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PAGE 5: PHOTO MEMORIES GALLERY & LIGHTBOX
+   PAGE 5: PHOTO MEMORIES GALLERY & LIGHTBOX (CLEAN PHOTO CARDS)
    ═══════════════════════════════════════════════════════════════ */
 .gallery-header {
   text-align: center;
@@ -639,8 +631,7 @@ img {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 0.4rem;
-  text-align: left;
+  padding: 0.35rem;
   transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
@@ -662,19 +653,6 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.memory-label {
-  display: block;
-  padding-top: 0.4rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--ivory-dim);
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Lightbox Modal */
@@ -701,25 +679,16 @@ img {
   max-width: min(92vw, 540px);
   max-height: 82dvh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
 }
 
 .lightbox-figure img {
-  max-height: 70dvh;
+  max-height: 78dvh;
   width: auto;
   border-radius: 6px;
   border: 1px solid var(--border-strong);
   object-fit: contain;
-}
-
-.lightbox-caption {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.15rem;
-  color: var(--gold-light);
-  text-align: center;
 }
 
 .lb-ctrl {
@@ -741,7 +710,7 @@ img {
 .lb-next { right: 0.75rem; top: 50%; transform: translateY(-50%); }
 
 /* ═══════════════════════════════════════════════════════════════
-   PAGE 6: PERSONAL LETTER (KANAK TO SRISHTI)
+   PAGE 6: PERSONAL LETTER (ARPIT TO SRISHTI)
    ═══════════════════════════════════════════════════════════════ */
 .letter-shell {
   max-width: 660px;
@@ -988,7 +957,8 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  background: linear-gradient(to top, rgba(7, 7, 7, 0.97) 75%, rgba(7, 7, 7, 0));
+  background: var(--bg);
+  border-top: 1px solid rgba(212, 175, 106, 0.1);
   z-index: 50;
 }
 
@@ -1119,19 +1089,18 @@ img {
               <li>The simple beginning of a bond that stayed strong over the years.</li>
             </ul>
           </div>
-          <figure class="photo-frame">
+          <div class="photo-frame">
             <div class="photo-frame-inner">
               <img
                 src="photos/photos-1.jpg"
-                alt="Class 10 memories"
+                alt="Class 10 memory"
                 width="480"
                 height="360"
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            <figcaption class="photo-caption">Where our Class 10 story began</figcaption>
-          </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -1154,32 +1123,30 @@ img {
             </ul>
           </div>
           <div class="dual-frames">
-            <figure class="photo-frame">
+            <div class="photo-frame">
               <div class="photo-frame-inner">
                 <img
                   src="photos/photos-2.jpg"
-                  alt="Always laughing together"
+                  alt="School memory 1"
                   width="300"
                   height="400"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
-              <figcaption class="photo-caption">Always laughing</figcaption>
-            </figure>
-            <figure class="photo-frame">
+            </div>
+            <div class="photo-frame">
               <div class="photo-frame-inner">
                 <img
                   src="photos/photos-6.jpg"
-                  alt="Tuition and after-class memories"
+                  alt="School memory 2"
                   width="300"
                   height="400"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
-              <figcaption class="photo-caption">Tuition days</figcaption>
-            </figure>
+            </div>
           </div>
         </div>
       </div>
@@ -1255,19 +1222,19 @@ img {
       </div>
     </section>
 
-    <!-- PAGE 6: PERSONAL LETTER (KANAK TO SRISHTI) -->
+    <!-- PAGE 6: PERSONAL LETTER (ARPIT TO SRISHTI) -->
     <section class="page" data-page="5" data-title="Personal Letter" aria-label="Page 6: Personal Letter">
       <div class="page-inner">
         <div class="letter-shell" id="letterShell">
           <div class="envelope-card">
             <p class="kicker">Chapter 05 &bull; Written For You</p>
-            <div class="wax-seal" aria-hidden="true">K &bull; S</div>
-            <h2 class="display-title">A Letter From <em>Kanak</em></h2>
+            <div class="wax-seal" aria-hidden="true">A &bull; S</div>
+            <h2 class="display-title">A Letter From <em>Arpit</em></h2>
             <p class="lead-copy">Tap below to open your birthday note.</p>
             <button class="btn" id="openLetterBtn" type="button">Open Letter</button>
           </div>
 
-          <article class="letter-sheet" aria-label="Birthday letter from Kanak to Srishti">
+          <article class="letter-sheet" aria-label="Birthday letter from Arpit to Srishti">
             <div class="letter-top">
               <span class="letter-salutation">Dear Srishti,</span>
               <button class="letter-close-btn" id="closeLetterBtn" type="button">Close</button>
@@ -1284,7 +1251,7 @@ img {
             <p>
               On your birthday, I wish you endless happiness, good health, and everything your heart hopes for in the year ahead. Keep smiling just the way you always do.
             </p>
-            <p class="letter-sign">Warmly,<br />Kanak</p>
+            <p class="letter-sign">Warmly,<br />Arpit</p>
           </article>
         </div>
       </div>
@@ -1338,7 +1305,6 @@ img {
     <button class="lb-ctrl lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&lsaquo;</button>
     <figure class="lightbox-figure">
       <img id="lbImg" src="" alt="" />
-      <figcaption class="lightbox-caption" id="lbCaption"></figcaption>
     </figure>
     <button class="lb-ctrl lb-next" id="lbNext" type="button" aria-label="Next photo">&rsaquo;</button>
   </div>
@@ -1367,14 +1333,14 @@ img {
       { id: 'moments', label: 'Best Moments' }
     ],
     photos: [
-      { src: 'photos/photos-1.jpg', caption: 'Class 10 tuition memories', category: 'school' },
-      { src: 'photos/photos-2.jpg', caption: 'Always laughing together', category: 'moments' },
-      { src: 'photos/photos-3.jpg', caption: 'Unforgettable smiles', category: 'moments' },
-      { src: 'photos/photos-4.jpg', caption: 'School days bond', category: 'school' },
-      { src: 'photos/photos-5.jpg', caption: 'Good times', category: 'moments' },
-      { src: 'photos/photos-6.jpg', caption: 'Last bench days', category: 'school' },
-      { src: 'photos/photos-7.jpg', caption: 'Through the years', category: 'school' },
-      { src: 'photos/photos-8.jpg', caption: 'Best memories', category: 'moments' }
+      { src: 'photos/photos-1.jpg', category: 'school' },
+      { src: 'photos/photos-2.jpg', category: 'moments' },
+      { src: 'photos/photos-3.jpg', category: 'moments' },
+      { src: 'photos/photos-4.jpg', category: 'school' },
+      { src: 'photos/photos-5.jpg', category: 'moments' },
+      { src: 'photos/photos-6.jpg', category: 'school' },
+      { src: 'photos/photos-7.jpg', category: 'school' },
+      { src: 'photos/photos-8.jpg', category: 'moments' }
     ]
   };
 
@@ -1410,7 +1376,7 @@ img {
       img.style.display = 'none';
       const fallback = document.createElement('div');
       fallback.className = 'img-fallback';
-      fallback.innerHTML = `<span>Srishti &amp; Kanak</span><small>${srcName}</small>`;
+      fallback.innerHTML = `<span>Srishti &amp; Arpit</span><small>${srcName}</small>`;
       parent.appendChild(fallback);
     }, { once: true });
   }
@@ -1492,7 +1458,7 @@ img {
   }, { passive: true });
 
   /* ═══════════════════════════════════════════════════════════════
-     3. BIRTHDAY COUNTDOWN / CELEBRATION BADGE (NO DOM THRASHING)
+     3. BIRTHDAY COUNTDOWN / CELEBRATION BADGE
      ═══════════════════════════════════════════════════════════════ */
   function initBirthdayStatus() {
     const container = document.getElementById('birthdayStatusArea');
@@ -1563,13 +1529,12 @@ img {
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     5. PHOTO GALLERY & LIGHTBOX
+     5. PHOTO GALLERY & LIGHTBOX (NO TEXT BELOW PHOTOS)
      ═══════════════════════════════════════════════════════════════ */
   const filterBar = document.getElementById('filterBar');
   const memoryGrid = document.getElementById('memoryGrid');
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
-  const lbCaption = document.getElementById('lbCaption');
 
   function renderFilters() {
     const frag = document.createDocumentFragment();
@@ -1597,27 +1562,22 @@ img {
       btn.type = 'button';
       btn.className = 'memory-card';
       btn.dataset.idx = String(idx);
-      btn.setAttribute('aria-label', `View photo: ${photo.caption}`);
+      btn.setAttribute('aria-label', `View photo ${idx + 1}`);
 
       const thumb = document.createElement('div');
       thumb.className = 'memory-thumb';
 
       const img = document.createElement('img');
       img.src = photo.src;
-      img.alt = photo.caption;
+      img.alt = `Memory photo ${idx + 1}`;
       img.width = 300;
       img.height = 400;
       img.loading = 'lazy';
       img.decoding = 'async';
       attachImageFallback(img);
 
-      const label = document.createElement('span');
-      label.className = 'memory-label';
-      label.textContent = photo.caption;
-
       thumb.appendChild(img);
       btn.appendChild(thumb);
-      btn.appendChild(label);
       frag.appendChild(btn);
     });
 
@@ -1650,8 +1610,7 @@ img {
     const item = filteredPhotos[lbIndex];
     if (!item) return;
     lbImg.src = item.src;
-    lbImg.alt = item.caption;
-    lbCaption.textContent = item.caption;
+    lbImg.alt = `Memory photo ${lbIndex + 1}`;
   }
 
   memoryGrid.addEventListener('click', (e) => {
@@ -1819,7 +1778,6 @@ img {
     if (!audioCtx) audioCtx = new AudioContextClass();
     if (audioCtx.state === 'suspended') audioCtx.resume();
 
-    // Gentle Happy Birthday music-box notes (Hz)
     const notes = [261.63, 261.63, 293.66, 261.63, 349.23, 329.63, 261.63, 261.63, 293.66, 261.63, 392.00, 349.23];
     let step = 0;
 
